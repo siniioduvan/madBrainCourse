@@ -11,13 +11,13 @@ abstract class AbstractFilm {
 
 }
 
-class Film extends AbstractFilm with LanguageConvert {
+class Film extends AbstractFilm with ConvertLanguage {
 
 }
 
 enum Language { russian, english }
 
-mixin LanguageConvert implements AbstractFilm {
+mixin ConvertLanguage implements AbstractFilm {
 
   late Language lan;
 
