@@ -15,7 +15,7 @@ abstract class AbstractFilm {
   void aboutFilm();
 }
 
-enum Language { russian, english, france, deutsch }
+enum Language { russian, english, france, deutsch, unknown }
 
 extension LanguageExtension on Language {
   String toPrettyString() {
@@ -58,7 +58,7 @@ class Film extends AbstractFilm with languageConvert{
 }
 
 mixin languageConvert {
-  Language? getLanguage (String language) {
+  Language getLanguage (String language) {
     switch (language) {
       case 'russian':
         return Language.russian;
@@ -68,6 +68,8 @@ mixin languageConvert {
         return Language.france;
       case 'deutsch':
         return Language.deutsch;
+      default:
+        return Language.unknown;
     }
   }
 }
