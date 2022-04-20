@@ -28,6 +28,9 @@ extension LanguageExtension on Language {
         return 'Французский';
       case Language.russian:
         return 'Русский';
+      default: Language.unknown;
+        return 'Неизвестно';
+
     }
   }
 }
