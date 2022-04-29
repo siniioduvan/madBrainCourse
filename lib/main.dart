@@ -35,7 +35,7 @@ extension LanguageExtension on Language {
   }
 }
 
-class Film extends AbstractFilm with languageConvert{
+class Film extends AbstractFilm with LanguageConvert{
   const Film({
     required String id,
     required String title,
@@ -60,7 +60,7 @@ class Film extends AbstractFilm with languageConvert{
 
 }
 
-mixin languageConvert {
+mixin LanguageConvert {
   Language getLanguage (String language) {
     switch (language) {
       case 'russian':
@@ -123,5 +123,57 @@ List<Film> _getFilm() {
 }
 
 void main() {
-  List<Film> film = _getFilm();
+  runApp(const MyApp());
 }
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'FilmApp',
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          color: Colors.deepPurple,
+        )
+      ),
+      home: const HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Список фильмов'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'You have pushed the button this many times:',
+            ),
+            Text(
+              'counter',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
