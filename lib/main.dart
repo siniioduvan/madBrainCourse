@@ -28,14 +28,14 @@ extension LanguageExtension on Language {
         return 'Французский';
       case Language.russian:
         return 'Русский';
-      default: Language.unknown;
+      default:
+        Language.unknown;
         return 'Неизвестно';
-
     }
   }
 }
 
-class Film extends AbstractFilm with LanguageConvert{
+class Film extends AbstractFilm with LanguageConvert {
   const Film({
     required String id,
     required String title,
@@ -44,24 +44,17 @@ class Film extends AbstractFilm with LanguageConvert{
     required String releaseDate,
     required String description,
     required String language,
-  }) : super(
-      id,
-      title,
-      picture,
-      voteAverage,
-      releaseDate,
-      description,
-      language);
+  }) : super(id, title, picture, voteAverage, releaseDate, description,
+            language);
 
   @override
   void aboutFilm() {
     print('Фильм: $title, описание: $description, рейтинг: $voteAverage');
   }
-
 }
 
 mixin LanguageConvert {
-  Language getLanguage (String language) {
+  Language getLanguage(String language) {
     switch (language) {
       case 'russian':
         return Language.russian;
@@ -122,6 +115,24 @@ List<Film> _getFilm() {
   ];
 }
 
+class FilmCard extends StatelessWidget {
+  const FilmCard(
+      {Key? key,
+      required this.title,
+      required this.picture,
+      required this.language})
+      : super(key: key);
+
+  final String title;
+  final String picture;
+  final String language;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
 void main() {
   runApp(const MyApp());
 }
@@ -135,10 +146,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'FilmApp',
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          color: Colors.deepPurple,
-        )
-      ),
+          appBarTheme: const AppBarTheme(
+        color: Colors.deepPurple,
+      )),
       home: const HomePage(),
     );
   }
@@ -175,5 +185,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
