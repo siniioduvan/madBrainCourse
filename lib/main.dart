@@ -44,8 +44,14 @@ class Film extends AbstractFilm with LanguageConvert {
     required String releaseDate,
     required String description,
     required String language,
-  }) : super(id, title, picture, voteAverage, releaseDate, description,
-            language);
+  }) : super(
+      id,
+      title,
+      picture,
+      voteAverage,
+      releaseDate,
+      description,
+      language);
 
   @override
   void aboutFilm() {
@@ -70,66 +76,139 @@ mixin LanguageConvert {
   }
 }
 
-List<Film> _getFilm() {
+List<Film> getFilm() {
   return [
     const Film(
         id: "01",
         title: "Зеленая миля",
         picture:
-            'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4057c4b8-8208-4a04-b169-26b0661453e3/600x900',
+        'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4057c4b8-8208-4a04-b169-26b0661453e3/600x900',
         voteAverage: 9.1,
         releaseDate: '6 декабря 1999',
         description:
-            'Пол Эджкомб — начальник блока смертников в тюрьме «Холодная гора», каждый из узников которого однажды проходит «зеленую милю» по пути к месту казни. Пол повидал много заключённых и надзирателей за время работы. Однако гигант Джон Коффи, обвинённый в страшном преступлении, стал одним из самых необычных обитателей блока.,',
+        'Пол Эджкомб — начальник блока смертников в тюрьме «Холодная гора», каждый из узников которого однажды проходит «зеленую милю» по пути к месту казни. Пол повидал много заключённых и надзирателей за время работы. Однако гигант Джон Коффи, обвинённый в страшном преступлении, стал одним из самых необычных обитателей блока.,',
         language: 'russian'),
     const Film(
         id: '02',
         title: 'Побег из Шоушенка',
         picture:
-            'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/0b76b2a2-d1c7-4f04-a284-80ff7bb709a4/600x900',
+        'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/0b76b2a2-d1c7-4f04-a284-80ff7bb709a4/600x900',
         voteAverage: 9.1,
         releaseDate: '10 сентября 1994',
         description:
-            'Бухгалтер Энди Дюфрейн обвинён в убийстве собственной жены и её любовника. Оказавшись в тюрьме под названием Шоушенк, он сталкивается с жестокостью и беззаконием,',
+        'Бухгалтер Энди Дюфрейн обвинён в убийстве собственной жены и её любовника. Оказавшись в тюрьме под названием Шоушенк, он сталкивается с жестокостью и беззаконием,',
         language: 'russian'),
     const Film(
         id: '03',
         title: 'Список Шиндлера',
         picture:
-            'https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/b327ada7-d790-49ae-8b24-374497a0980c/600x900',
+        'https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/b327ada7-d790-49ae-8b24-374497a0980c/600x900',
         voteAverage: 8.8,
         releaseDate: '30 ноября 1993',
         description:
-            'История немецкого промышленника, спасшего тысячи жизней во время Холокоста. Драма Стивена Спилберга',
+        'История немецкого промышленника, спасшего тысячи жизней во время Холокоста. Драма Стивена Спилберга',
         language: 'russian'),
     const Film(
         id: '04',
         title: 'Властелин колец',
         picture:
-            'https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/e410c71f-baa1-4fe5-bb29-aedb4662f49b/600x900',
+        'https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/e410c71f-baa1-4fe5-bb29-aedb4662f49b/600x900',
         voteAverage: 8.6,
         releaseDate: '01 декабря 2003',
         description:
-            'Повелитель сил тьмы Саурон направляет свою бесчисленную армию под стены Минас-Тирита, крепости Последней Надежды.',
+        'Повелитель сил тьмы Саурон направляет свою бесчисленную армию под стены Минас-Тирита, крепости Последней Надежды.',
+        language: 'russian'),
+    const Film(
+        id: "01",
+        title: "Зеленая миля",
+        picture:
+        'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4057c4b8-8208-4a04-b169-26b0661453e3/600x900',
+        voteAverage: 9.1,
+        releaseDate: '6 декабря 1999',
+        description:
+        'Пол Эджкомб — начальник блока смертников в тюрьме «Холодная гора», каждый из узников которого однажды проходит «зеленую милю» по пути к месту казни. Пол повидал много заключённых и надзирателей за время работы. Однако гигант Джон Коффи, обвинённый в страшном преступлении, стал одним из самых необычных обитателей блока.,',
+        language: 'russian'),
+    const Film(
+        id: '02',
+        title: 'Побег из Шоушенка',
+        picture:
+        'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/0b76b2a2-d1c7-4f04-a284-80ff7bb709a4/600x900',
+        voteAverage: 9.1,
+        releaseDate: '10 сентября 1994',
+        description:
+        'Бухгалтер Энди Дюфрейн обвинён в убийстве собственной жены и её любовника. Оказавшись в тюрьме под названием Шоушенк, он сталкивается с жестокостью и беззаконием,',
+        language: 'russian'),
+    const Film(
+        id: '03',
+        title: 'Список Шиндлера',
+        picture:
+        'https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/b327ada7-d790-49ae-8b24-374497a0980c/600x900',
+        voteAverage: 8.8,
+        releaseDate: '30 ноября 1993',
+        description:
+        'История немецкого промышленника, спасшего тысячи жизней во время Холокоста. Драма Стивена Спилберга',
+        language: 'russian'),
+    const Film(
+        id: '04',
+        title: 'Властелин колец',
+        picture:
+        'https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/e410c71f-baa1-4fe5-bb29-aedb4662f49b/600x900',
+        voteAverage: 8.6,
+        releaseDate: '01 декабря 2003',
+        description:
+        'Повелитель сил тьмы Саурон направляет свою бесчисленную армию под стены Минас-Тирита, крепости Последней Надежды.',
         language: 'russian')
   ];
 }
 
 class FilmCard extends StatelessWidget {
-  const FilmCard(
-      {Key? key,
-      required this.title,
-      required this.picture,
-      required this.language})
+  const FilmCard({Key? key, required this.title, required this.language})
       : super(key: key);
 
   final String title;
-  final String picture;
   final String language;
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      color: Colors.grey,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            flex: 1,
+            child: Image.network(
+                'https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/e410c71f-baa1-4fe5-bb29-aedb4662f49b/600x900'),
+          ),
+          Expanded(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Название: ' + title,
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .titleLarge,
+                  ),
+                  Text(
+                    'Язык: ' + language,
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .titleLarge,
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
 
@@ -147,8 +226,8 @@ class MyApp extends StatelessWidget {
       title: 'FilmApp',
       theme: ThemeData(
           appBarTheme: const AppBarTheme(
-        color: Colors.deepPurple,
-      )),
+            color: Colors.deepPurple,
+          )),
       home: const HomePage(),
     );
   }
@@ -164,24 +243,30 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+
+    final film = getFilm();
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Список фильмов'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              'counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        appBar: AppBar(
+          title: const Text('Список фильмов'),
         ),
-      ),
+        body: SingleChildScrollView(
+          child: Column(
+              children: List.generate(film.length, (index) {
+                return FilmCard(
+                    title: film[index].title,
+                    language: film[index]
+                        .getLanguage(film[index].language)
+                        .toPrettyString(),
+                );
+              })
+          ),
+        ),
+
+        // children: <Widget>[
+        //   for (Film film in getFilm())
+        //     FilmCard(title: film.title, language: film.language)
+
     );
   }
 }
