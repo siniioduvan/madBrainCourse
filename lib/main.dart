@@ -1,171 +1,41 @@
 import 'package:flutter/material.dart';
 
-abstract class AbstractFilm {
-  const AbstractFilm(this.id, this.title, this.picture, this.voteAverage,
-      this.releaseDate, this.description, this.language);
+import 'models/film_card_model.dart';
 
-  final String id;
+class FilmTile extends StatelessWidget {
+  const FilmTile({
+    required this.title,
+    required this.voteAverage,
+    required this.language,
+    required this.picture,
+    required this.releaseDate,
+    required this.description,
+    Key? key,
+  }) : super(key: key);
+
+  factory FilmTile.fromModel({
+    required FilmTile model,
+    Key? key,
+  }) {
+    return FilmTile(
+      title: model.title,
+      voteAverage: model.voteAverage,
+      language: model.language,
+      picture: model.picture,
+      releaseDate: model.releaseDate,
+      description: model.description,
+      key: key,
+
+    );
+  }
+
+
   final String title;
-  final String picture;
   final double voteAverage;
+  final String language;
+  final String picture;
   final String releaseDate;
   final String description;
-  final String language;
-
-  void aboutFilm();
-}
-
-enum Language { russian, english, france, deutsch, unknown }
-
-extension LanguageExtension on Language {
-  String toPrettyString() {
-    switch (this) {
-      case Language.deutsch:
-        return 'Немецкий';
-      case Language.english:
-        return 'Английский';
-      case Language.france:
-        return 'Французский';
-      case Language.russian:
-        return 'Русский';
-      default:
-        Language.unknown;
-        return 'Неизвестно';
-    }
-  }
-}
-
-class Film extends AbstractFilm with LanguageConvert {
-  const Film({
-    required String id,
-    required String title,
-    required String picture,
-    required double voteAverage,
-    required String releaseDate,
-    required String description,
-    required String language,
-  }) : super(id, title, picture, voteAverage, releaseDate, description,
-            language);
-
-  @override
-  void aboutFilm() {
-    print('Фильм: $title, описание: $description, рейтинг: $voteAverage');
-  }
-}
-
-mixin LanguageConvert {
-  Language getLanguage(String language) {
-    switch (language) {
-      case 'russian':
-        return Language.russian;
-      case 'english':
-        return Language.english;
-      case 'france':
-        return Language.france;
-      case 'deutsch':
-        return Language.deutsch;
-      default:
-        return Language.unknown;
-    }
-  }
-}
-
-List<Film> getFilm() {
-  return [
-    const Film(
-        id: "01",
-        title: "Зеленая миля",
-        picture:
-            'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4057c4b8-8208-4a04-b169-26b0661453e3/600x900',
-        voteAverage: 9.1,
-        releaseDate: '6 декабря 1999',
-        description:
-            'Пол Эджкомб — начальник блока смертников в тюрьме «Холодная гора», каждый из узников которого однажды проходит «зеленую милю» по пути к месту казни. Пол повидал много заключённых и надзирателей за время работы. Однако гигант Джон Коффи, обвинённый в страшном преступлении, стал одним из самых необычных обитателей блока.,',
-        language: 'russian'),
-    const Film(
-        id: '02',
-        title: 'Побег из Шоушенка',
-        picture:
-            'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/0b76b2a2-d1c7-4f04-a284-80ff7bb709a4/600x900',
-        voteAverage: 9.1,
-        releaseDate: '10 сентября 1994',
-        description:
-            'Бухгалтер Энди Дюфрейн обвинён в убийстве собственной жены и её любовника. Оказавшись в тюрьме под названием Шоушенк, он сталкивается с жестокостью и беззаконием,',
-        language: 'russian'),
-    const Film(
-        id: '03',
-        title: 'Список Шиндлера',
-        picture:
-            'https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/b327ada7-d790-49ae-8b24-374497a0980c/600x900',
-        voteAverage: 8.8,
-        releaseDate: '30 ноября 1993',
-        description:
-            'История немецкого промышленника, спасшего тысячи жизней во время Холокоста. Драма Стивена Спилберга',
-        language: 'russian'),
-    const Film(
-        id: '04',
-        title: 'Властелин колец',
-        picture:
-            'https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/e410c71f-baa1-4fe5-bb29-aedb4662f49b/600x900',
-        voteAverage: 8.6,
-        releaseDate: '01 декабря 2003',
-        description:
-            'Повелитель сил тьмы Саурон направляет свою бесчисленную армию под стены Минас-Тирита, крепости Последней Надежды.',
-        language: 'russian'),
-    const Film(
-        id: "01",
-        title: "Зеленая миля",
-        picture:
-            'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4057c4b8-8208-4a04-b169-26b0661453e3/600x900',
-        voteAverage: 9.1,
-        releaseDate: '6 декабря 1999',
-        description:
-            'Пол Эджкомб — начальник блока смертников в тюрьме «Холодная гора», каждый из узников которого однажды проходит «зеленую милю» по пути к месту казни. Пол повидал много заключённых и надзирателей за время работы. Однако гигант Джон Коффи, обвинённый в страшном преступлении, стал одним из самых необычных обитателей блока.,',
-        language: 'russian'),
-    const Film(
-        id: '02',
-        title: 'Побег из Шоушенка',
-        picture:
-            'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/0b76b2a2-d1c7-4f04-a284-80ff7bb709a4/600x900',
-        voteAverage: 9.1,
-        releaseDate: '10 сентября 1994',
-        description:
-            'Бухгалтер Энди Дюфрейн обвинён в убийстве собственной жены и её любовника. Оказавшись в тюрьме под названием Шоушенк, он сталкивается с жестокостью и беззаконием,',
-        language: 'russian'),
-    const Film(
-        id: '03',
-        title: 'Список Шиндлера',
-        picture:
-            'https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/b327ada7-d790-49ae-8b24-374497a0980c/600x900',
-        voteAverage: 8.8,
-        releaseDate: '30 ноября 1993',
-        description:
-            'История немецкого промышленника, спасшего тысячи жизней во время Холокоста. Драма Стивена Спилберга',
-        language: 'russian'),
-    const Film(
-        id: '04',
-        title: 'Властелин колец',
-        picture:
-            'https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/e410c71f-baa1-4fe5-bb29-aedb4662f49b/600x900',
-        voteAverage: 8.6,
-        releaseDate: '01 декабря 2003',
-        description:
-            'Повелитель сил тьмы Саурон направляет свою бесчисленную армию под стены Минас-Тирита, крепости Последней Надежды.',
-        language: 'russian')
-  ];
-}
-
-class FilmCard extends StatelessWidget {
-  const FilmCard(
-      {Key? key,
-      required this.title,
-      required this.language,
-      required this.voteAverage})
-      : super(key: key);
-
-  final String title;
-  final String language;
-  final double voteAverage;
 
   @override
   Widget build(BuildContext context) {
@@ -173,36 +43,69 @@ class FilmCard extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       color: Colors.grey,
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: <Widget>[
           Expanded(
-            flex: 1,
             child: Image.network(
-                'https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/e410c71f-baa1-4fe5-bb29-aedb4662f49b/600x900'),
+              picture,
+              loadingBuilder: (BuildContext context, Widget child,
+                  ImageChunkEvent? loadingProgress) {
+                if (loadingProgress == null) {
+                  return child;
+                }
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+            ),
           ),
           Expanded(
             flex: 2,
             child: Padding(
-              padding: const EdgeInsets.only(left: 8),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: <Widget>[
                   Text(
-                    'Название: ' + title,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    title,
+                    style: Theme.of(context).textTheme.headline5,
                   ),
-                  Text(
-                    'Язык: ' + language,
-                    style: Theme.of(context).textTheme.titleLarge,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Row(
+                      children: <Widget>[
+                        const Padding(
+                          padding: EdgeInsets.only(right: 8),
+                          child: Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                          ),
+                        ),
+                        Text(
+                          voteAverage.toStringAsFixed(1),
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: voteAverage < 4
+                                ? Colors.red
+                                : voteAverage >= 8
+                                ? Colors.green
+                                : Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  Text(
-                    'Рейтинг: ' + voteAverage.toString(),
-                    style: Theme.of(context).textTheme.titleLarge,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16, bottom: 8),
+                    child: Text(
+                      'Дата выхода: $releaseDate',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
                   ),
+                  Text(description),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -246,8 +149,23 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Список фильмов'),
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          onPressed: () {},
+        ),
+        title: Text("Cписок фильмов"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.sort),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {},
+          ),
+        ],
       ),
+
       body: SingleChildScrollView(
         child: Column(children: [
           Row(
@@ -264,20 +182,19 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           ...List.generate(film.length, (index) {
-            return FilmCard(
+            return FilmTile(
               title: film[index].title,
               voteAverage: film[index].voteAverage,
               language: film[index]
                   .getLanguage(film[index].language)
                   .toPrettyString(),
+              picture: film[index].picture,
+              description: film[index].description,
+              releaseDate: film[index].releaseDate,
             );
           })
         ]),
       ),
-
-      // children: <Widget>[
-      //   for (Film film in getFilm())
-      //     FilmCard(title: film.title, language: film.language)
     );
   }
 }
