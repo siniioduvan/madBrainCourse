@@ -1,6 +1,7 @@
 
 import 'package:film/app/models/film_card_models.dart';
 import 'package:film/app/widgets/film_card.dart';
+import 'package:film/app/widgets/film_grid_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -31,11 +32,16 @@ class FilmGrid extends StatelessWidget {
         ),
       body: GridView.builder(
         itemBuilder: (BuildContext context, int index) {
-          return FilmCard.fromFilm(model: film[index % film.length]);
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FilmGridCard.fromFilm(model: film[index % film.length]),
+          );
         },
-        gridDelegate:
-        const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-      ),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 2 / 3,
+        ),
+      )
     );
   }
 }

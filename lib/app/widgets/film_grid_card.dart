@@ -1,10 +1,11 @@
 
 import 'package:film/app/feature/home/widgets/image_network.dart';
+import 'package:film/app/models/film_card_models.dart';
 import 'package:flutter/material.dart';
 
 class FilmGridCard extends StatelessWidget {
   const FilmGridCard({
-    required this.id,
+    //required this.id,
     required this.title,
     required this.picture,
     required this.voteAverage,
@@ -12,11 +13,11 @@ class FilmGridCard extends StatelessWidget {
   }) : super(key: key);
 
   factory FilmGridCard.fromFilm({
-    required FilmGridCard model,
+    required Film model,
     Key? key,
   }) {
     return FilmGridCard(
-      id: model.id,
+      //id: model.id,
       title: model.title,
       picture: model.picture,
       voteAverage: model.voteAverage,
@@ -24,7 +25,7 @@ class FilmGridCard extends StatelessWidget {
     );
   }
 
-  final int id;
+  //final int id;
   final String title;
   final String picture;
   final double voteAverage;
