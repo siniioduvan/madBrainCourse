@@ -2,10 +2,12 @@ import 'package:film/app/feature/home/widgets/film_grid.dart';
 import 'package:film/app/feature/home/widgets/film_list.dart';
 import 'package:flutter/material.dart';
 
+
+
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
-  static  List<_Tab> _tabs = <_Tab>[
+  static List<_Tab> _tabs = <_Tab>[
     _Tab(
       icon: Icon(Icons.local_movies_outlined),
       label: 'Feed',
@@ -17,6 +19,8 @@ class MainPage extends StatefulWidget {
       page: FilmGrid(),
     ),
   ];
+
+  static const path = '/MainPage';
 
   @override
   State<MainPage> createState() => _MainPageState();

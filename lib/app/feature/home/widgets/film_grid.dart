@@ -1,4 +1,5 @@
 
+import 'package:film/app/feature/settings/pages/setting_page.dart';
 import 'package:film/app/models/film_card_models.dart';
 import 'package:film/app/widgets/film_grid_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,8 +25,13 @@ class FilmGrid extends StatelessWidget {
               onPressed: () {},
             ),
             IconButton(
-              icon: Icon(Icons.settings),
-              onPressed: () {},
+              icon: const Icon(Icons.settings),
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  '/settings',
+                );
+              },
             ),
           ],
         ),
