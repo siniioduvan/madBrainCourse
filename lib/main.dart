@@ -1,5 +1,6 @@
 
 import 'package:film/app/feature/home/pages/home_page.dart';
+import 'package:film/app/feature/home/widgets/button/main_page.dart';
 import 'package:film/app/feature/home/widgets/film_grid.dart';
 import 'package:film/app/models/film_card_models.dart';
 import 'package:film/app/widgets/film_card.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(
         color: Colors.deepPurple,
       )),
-      home: FilmGrid(),
+      home: MainPage(),
     );
   }
 }
