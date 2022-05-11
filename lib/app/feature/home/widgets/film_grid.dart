@@ -1,6 +1,5 @@
 
 import 'package:film/app/models/film_card_models.dart';
-import 'package:film/app/widgets/film_card.dart';
 import 'package:film/app/widgets/film_grid_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
