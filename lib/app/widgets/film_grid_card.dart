@@ -1,4 +1,3 @@
-
 import 'package:film/app/feature/home/widgets/button/primary_button.dart';
 import 'package:film/app/feature/home/widgets/image_network.dart';
 import 'package:film/app/models/film_card_models.dart';

@@ -1,4 +1,3 @@
-
 import 'package:film/app/models/film_card_models.dart';
 import 'package:flutter/material.dart';
 
@@ -85,8 +84,8 @@ class FilmCard extends StatelessWidget {
                           color: voteAverage < 4
                               ? Colors.red
                               : voteAverage >= 8
-                              ? Colors.green
-                              : Colors.black,
+                                  ? Colors.green
+                                  : Colors.black,
                         ),
                       ),
                     ],

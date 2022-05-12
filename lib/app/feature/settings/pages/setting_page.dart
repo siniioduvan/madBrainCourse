@@ -8,7 +8,7 @@ class SettingsArguments {
 }
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key? key,required this.arguments}) : super(key: key);
+  const SettingsPage({Key? key, required this.arguments}) : super(key: key);
 
   final SettingsArguments arguments;
 
@@ -29,6 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text('User: ${widget.arguments.name}'),
             ElevatedButton(
               onPressed: () {
                 SystemChannels.platform.invokeMethod('SystemNavigator.pop');
@@ -57,4 +58,3 @@ class _SettingsPageState extends State<SettingsPage> {
         )));
   }
 }
-

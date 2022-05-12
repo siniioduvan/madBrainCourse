@@ -2,8 +2,6 @@ import 'package:film/app/feature/home/widgets/film_grid.dart';
 import 'package:film/app/feature/home/widgets/film_list.dart';
 import 'package:flutter/material.dart';
 
-
-
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
@@ -20,7 +18,7 @@ class MainPage extends StatefulWidget {
     ),
   ];
 
-  static const path = '/MainPage';
+  static const path = '/mainpage';
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -42,7 +40,7 @@ class _MainPageState extends State<MainPage> {
       bottomNavigationBar: BottomNavigationBar(
         items: List.generate(
           MainPage._tabs.length,
-              (index) {
+          (index) {
             final _Tab tab = MainPage._tabs[index];
             return BottomNavigationBarItem(
               icon: tab.icon,

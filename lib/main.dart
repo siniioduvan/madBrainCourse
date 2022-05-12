@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      initialRoute: '/',
+      initialRoute: '/mainpage',
       onGenerateRoute: (settings) {
         if (settings.name == MainPage.path) {
           return MaterialPageRoute(
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         }
         if (settings.name == SettingsPage.path) {
           final SettingsArguments arguments =
-          settings.arguments as SettingsArguments;
+              settings.arguments as SettingsArguments;
           return MaterialPageRoute(
             builder: (context) {
               return SettingsPage(
