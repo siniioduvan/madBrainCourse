@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
     final List<Film> film = getFilm();
 
     return Scaffold(
+      backgroundColor: Colors.grey[900],
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.menu),

@@ -78,7 +78,7 @@ List<Film> getFilm() {
         voteAverage: 9.1,
         releaseDate: '6 декабря 1999',
         description:
-            'Пол Эджкомб — начальник блока смертников в тюрьме «Холодная гора», каждый из узников которого однажды проходит «зеленую милю».',
+            'Пол Эджкомб — начальник блока смертников в тюрьме «Холодная гора».',
         language: 'russian'),
     const Film(
         id: '02',
@@ -98,7 +98,7 @@ List<Film> getFilm() {
         voteAverage: 8.8,
         releaseDate: '30 ноября 1993',
         description:
-            'История немецкого промышленника, спасшего тысячи жизней во время Холокоста. Драма Стивена Спилберга',
+            'История немецкого промышленника, спасшего тысячи жизней во время Холокоста.',
         language: 'russian'),
     const Film(
         id: '04',
@@ -108,47 +108,7 @@ List<Film> getFilm() {
         voteAverage: 8.6,
         releaseDate: '01 декабря 2003',
         description:
-            'Повелитель сил тьмы Саурон направляет свою бесчисленную армию под стены Минас-Тирита, крепости Последней Надежды.',
+            'Повелитель сил тьмы Саурон направляет свою армию под стены крепости Последней Надежды.',
         language: 'russian'),
-    const Film(
-        id: "01",
-        title: "Зеленая миля",
-        picture:
-            'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4057c4b8-8208-4a04-b169-26b0661453e3/600x900',
-        voteAverage: 9.1,
-        releaseDate: '6 декабря 1999',
-        description:
-            'Пол Эджкомб — начальник блока смертников в тюрьме «Холодная гора», каждый из узников которого однажды проходит «зеленую милю».',
-        language: 'russian'),
-    const Film(
-        id: '02',
-        title: 'Побег из Шоушенка',
-        picture:
-            'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/0b76b2a2-d1c7-4f04-a284-80ff7bb709a4/600x900',
-        voteAverage: 9.1,
-        releaseDate: '10 сентября 1994',
-        description:
-            'Бухгалтер Энди Дюфрейн обвинён в убийстве собственной жены и её любовника. ',
-        language: 'russian'),
-    const Film(
-        id: '03',
-        title: 'Список Шиндлера',
-        picture:
-            'https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/b327ada7-d790-49ae-8b24-374497a0980c/600x900',
-        voteAverage: 8.8,
-        releaseDate: '30 ноября 1993',
-        description:
-            'История немецкого промышленника, спасшего тысячи жизней во время Холокоста. Драма Стивена Спилберга',
-        language: 'russian'),
-    const Film(
-        id: '04',
-        title: 'Властелин колец',
-        picture:
-            'https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/e410c71f-baa1-4fe5-bb29-aedb4662f49b/600x900',
-        voteAverage: 8.6,
-        releaseDate: '01 декабря 2003',
-        description:
-            'Повелитель сил тьмы Саурон направляет свою бесчисленную армию под стены Минас-Тирита, крепости Последней Надежды.',
-        language: 'russian')
   ];
 }

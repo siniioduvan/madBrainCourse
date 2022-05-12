@@ -64,7 +64,7 @@ class FilmCard extends StatelessWidget {
               children: <Widget>[
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headline5?.copyWith(color: Colors.white),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
@@ -95,10 +95,12 @@ class FilmCard extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 16, bottom: 8),
                   child: Text(
                     'Дата выхода: $releaseDate',
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.headline6?.copyWith(color: Colors.white),
                   ),
                 ),
-                Text(description),
+                Text(description,
+                  style: TextStyle(color: Colors.white),
+                ),
               ],
             ),
           ),
