@@ -1,45 +1,50 @@
-void main() {}
+import 'package:film/app/feature/home/pages/home_page.dart';
+import 'package:film/app/feature/home/widgets/button/main_page.dart';
+import 'package:film/app/feature/home/widgets/film_grid.dart';
+import 'package:film/app/feature/settings/pages/not_found_page.dart';
+import 'package:film/app/feature/settings/pages/setting_page.dart';
+import 'package:film/app/models/film_card_models.dart';
+import 'package:film/app/widgets/film_card.dart';
+import 'package:flutter/material.dart';
 
-abstract class AbstractFilm {
-  String? id;
-  String? title;
-  String? picture;
-  double? voteAverage;
-  String? releaseDate;
-  String? description;
-  late String language;
-
+void main() {
+  runApp(const MyApp());
 }
 
-class Film extends AbstractFilm with LanguageConvert {
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-}
-
-enum Language { russian, english }
-
-mixin LanguageConvert implements AbstractFilm {
-
-  late Language lan;
-
-  Language convertStringToEnum() {
-    if (language == 'russian') {
-      lan = Language.russian;
-    } else if (language == 'english') {
-      lan = Language.english;
-    }
-    return lan;
-  }
-}
-
-extension LanguageEnum on Language {
-
-  String toPrettyString(Language lan) {
-    late String lang;
-    if (lan == Language.russian) {
-      lang = "russian";
-    } else if (lan == Language.english) {
-      lang = "english";
-    }
-    return lang;
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Films',
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+      ),
+      initialRoute: '/mainpage',
+      onGenerateRoute: (settings) {
+        if (settings.name == MainPage.path) {
+          return MaterialPageRoute(
+            builder: (context) {
+              return const MainPage();
+            },
+          );
+        }
+        if (settings.name == SettingsPage.path) {
+          final SettingsArguments arguments =
+              settings.arguments as SettingsArguments;
+          return MaterialPageRoute(
+            builder: (context) {
+              return SettingsPage(
+                arguments: arguments,
+              );
+            },
+          );
+        }
+        return MaterialPageRoute(
+          builder: (_) => const NotFoundPage(),
+        );
+      },
+    );
   }
 }
