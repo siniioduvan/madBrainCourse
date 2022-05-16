@@ -40,7 +40,7 @@ class FilmGrid extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
-              child: FilmGridCard.fromFilm(model: film[index % film.length]),
+              child: FilmCard.fromFilm(model: film[index % film.length]),
             );
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

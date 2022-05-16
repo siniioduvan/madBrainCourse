@@ -1,8 +1,8 @@
 import 'package:film/app/models/film_card_models.dart';
 import 'package:flutter/material.dart';
 
-class FilmCard extends StatelessWidget {
-  const FilmCard({
+class FilmTile extends StatelessWidget {
+  const FilmTile({
     Key? key,
     required this.title,
     required this.language,
@@ -13,11 +13,11 @@ class FilmCard extends StatelessWidget {
     required this.releaseDate,
   }) : super(key: key);
 
-  factory FilmCard.fromFilm({
+  factory FilmTile.fromFilm({
     required Film model,
     Key? key,
   }) {
-    return FilmCard(
+    return FilmTile(
       id: model.id.toString(),
       title: model.title,
       picture: model.picture,

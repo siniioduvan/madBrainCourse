@@ -1,6 +1,6 @@
 import 'package:film/app/feature/settings/pages/setting_page.dart';
 import 'package:film/app/models/film_card_models.dart';
-import 'package:film/app/widgets/film_card.dart';
+import 'package:film/app/widgets/film_tile.dart';
 import 'package:flutter/material.dart';
 
 
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ListView.builder(
         itemBuilder: (BuildContext context, int index) {
-          return FilmCard.fromFilm(model: film[index % film.length]);
+          return FilmTile.fromFilm(model: film[index % film.length]);
         },
       ),
     );

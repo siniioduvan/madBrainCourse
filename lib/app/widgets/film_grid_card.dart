@@ -27,8 +27,8 @@ class _RatingChip extends StatelessWidget {
   }
 }
 
-class FilmGridCard extends StatelessWidget {
-  const FilmGridCard({
+class FilmCard extends StatelessWidget {
+  const FilmCard({
     //required this.id,
     required this.title,
     required this.picture,
@@ -36,11 +36,11 @@ class FilmGridCard extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  factory FilmGridCard.fromFilm({
+  factory FilmCard.fromFilm({
     required Film model,
     Key? key,
   }) {
-    return FilmGridCard(
+    return FilmCard(
       //id: model.id,
       title: model.title,
       picture: model.picture,
@@ -90,6 +90,24 @@ class FilmGridCard extends StatelessWidget {
               'More',
               onPressed: () {},
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 75),
+            child: Align(
+                alignment: Alignment.bottomCenter,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    boxShadow: const <BoxShadow>[
+                      BoxShadow(
+                        offset: Offset(1, 2),
+                        blurRadius: 5,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                  child: Text(title,
+                      style: TextStyle(color: Colors.white, fontSize: 18)),
+                )),
           ),
         ],
       ),

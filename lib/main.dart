@@ -4,7 +4,7 @@ import 'package:film/app/feature/home/widgets/film_grid.dart';
 import 'package:film/app/feature/settings/pages/not_found_page.dart';
 import 'package:film/app/feature/settings/pages/setting_page.dart';
 import 'package:film/app/models/film_card_models.dart';
-import 'package:film/app/widgets/film_card.dart';
+import 'package:film/app/widgets/film_tile.dart';
 import 'package:flutter/material.dart';
 
 void main() {
