@@ -95,20 +95,25 @@ class FilmCard extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 75),
             child: Align(
                 alignment: Alignment.bottomCenter,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    boxShadow: const <BoxShadow>[
-                      BoxShadow(
-                        offset: Offset(1, 2),
-                        blurRadius: 5,
-                        spreadRadius: 2,
-                      ),
-                    ],
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      shadows: <Shadow>[
+                        Shadow(
+                          offset: Offset(10.0, 10.0),
+                          blurRadius: 3.0,
+                          color: Color.fromARGB(255, 0, 0, 0),
+                        ),
+                        Shadow(
+                          offset: Offset(10.0, 10.0),
+                          blurRadius: 8.0,
+                          color: Color.fromARGB(125, 0, 0, 255),
+                        ),
+                      ],
+                    ),
                   ),
-                  child: Text(title,
-                      style: TextStyle(color: Colors.white, fontSize: 18)),
                 )),
-          ),
         ],
       ),
     );
