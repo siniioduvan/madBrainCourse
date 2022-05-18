@@ -29,6 +29,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+    # widgets
+  cached_network_image: ^3.2.0
+  flutter_cache_manager: ^3.3.0
+  flutter_html: ^2.2.1
+
+    # http
+  dio: ^4.0.4
+  pretty_dio_logger: ^1.1.1
+
+    # generators
   json_annotation: 4.4.0
 
 

@@ -1,6 +1,7 @@
 import 'package:film/presentation/pages/film_grid.dart';
 import 'package:film/presentation/pages/film_list.dart';
 import 'package:flutter/material.dart';
+import 'movie_card.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -10,6 +11,11 @@ class MainPage extends StatefulWidget {
       icon: Icon(Icons.local_movies_outlined),
       label: 'Feed',
       page: HomePage(title: 'Films'),
+    ),
+    _Tab(
+      icon: Icon(Icons.ondemand_video),
+      label: 'Serials',
+      page: MovieCard(),
     ),
     _Tab(
       icon: Icon(Icons.movie_filter),

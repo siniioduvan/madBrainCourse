@@ -1,6 +1,6 @@
 
 import 'package:film/presentation/pages/main_page.dart';
-import 'package:film/presentation/settings/pages/not_found_page.dart';
+import 'package:film/presentation/pages/not_found_page.dart';
 import 'package:film/presentation/settings/pages/setting_page.dart';
 import 'package:flutter/material.dart';
 
