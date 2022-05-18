@@ -1,7 +1,7 @@
 import 'package:film/presentation/pages/film_grid.dart';
 import 'package:film/presentation/pages/film_list.dart';
+import 'package:film/presentation/pages/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'movie_card.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class MainPage extends StatefulWidget {
     _Tab(
       icon: Icon(Icons.ondemand_video),
       label: 'Serials',
-      page: MovieCard(),
+      page: HomeScreen(),
     ),
     _Tab(
       icon: Icon(Icons.movie_filter),
