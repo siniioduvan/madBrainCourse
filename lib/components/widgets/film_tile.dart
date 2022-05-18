@@ -1,4 +1,5 @@
-import 'package:film/app/models/film_card_models.dart';
+
+import 'package:film/domain/models/film_card_models.dart';
 import 'package:flutter/material.dart';
 
 class FilmTile extends StatelessWidget {

@@ -1,5 +1,5 @@
-import 'package:film/app/feature/home/widgets/film_grid.dart';
-import 'package:film/app/feature/home/widgets/film_list.dart';
+import 'package:film/presentation/pages/film_grid.dart';
+import 'package:film/presentation/pages/film_list.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
