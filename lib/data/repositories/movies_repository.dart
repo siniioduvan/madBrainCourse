@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:film/components/button/error_dialog.dart';
+import 'package:film/components/dialogs/error_dialog.dart';
 import 'package:film/components/constants.dart';
 import 'package:film/data/dtos/show_card_dto.dart';
 import 'package:film/data/mappers/show_mapper.dart';
