@@ -1,7 +1,6 @@
 import 'package:film/components/constants.dart';
 import 'package:flutter/material.dart';
 
-
 /// Функция вызова диалога ошибки
 void showErrorDialog(BuildContext context, {required String error}) {
   showDialog(

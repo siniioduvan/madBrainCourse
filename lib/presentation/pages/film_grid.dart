@@ -1,4 +1,3 @@
-
 import 'package:film/domain/models/film_card_models.dart';
 import 'package:film/presentation/settings/pages/setting_page.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,7 @@ class FilmGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+        backgroundColor: Colors.grey[900],
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.menu),

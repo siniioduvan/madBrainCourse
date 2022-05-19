@@ -1,4 +1,3 @@
-
 import 'package:film/components/button/primary_button.dart';
 import 'package:film/components/image_network.dart';
 import 'package:film/domain/models/film_card_models.dart';
@@ -93,28 +92,28 @@ class FilmCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 75),
-            child: Align(
+              padding: const EdgeInsets.only(bottom: 75),
+              child: Align(
                 alignment: Alignment.bottomCenter,
-                  child: Text(
-                    title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      shadows: <Shadow>[
-                        Shadow(
-                          offset: Offset(10.0, 10.0),
-                          blurRadius: 3.0,
-                          color: Color.fromARGB(255, 0, 0, 0),
-                        ),
-                        Shadow(
-                          offset: Offset(10.0, 10.0),
-                          blurRadius: 8.0,
-                          color: Color.fromARGB(125, 0, 0, 255),
-                        ),
-                      ],
-                    ),
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    shadows: <Shadow>[
+                      Shadow(
+                        offset: Offset(10.0, 10.0),
+                        blurRadius: 3.0,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
+                      Shadow(
+                        offset: Offset(10.0, 10.0),
+                        blurRadius: 8.0,
+                        color: Color.fromARGB(125, 0, 0, 255),
+                      ),
+                    ],
                   ),
-                )),
+                ),
+              )),
         ],
       ),
     );

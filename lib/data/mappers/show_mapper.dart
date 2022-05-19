@@ -1,5 +1,3 @@
-
-
 import 'package:film/data/dtos/show_card_dto.dart';
 import 'package:film/domain/models/movie_card_model.dart';
 
@@ -7,11 +5,12 @@ import 'package:film/domain/models/movie_card_model.dart';
 extension ShowCardFromDTOToDomain on ShowCardDTO {
   MovieCardModel toDomain() {
     return MovieCardModel(
-      id: characters?.id ?? 0,
-      title: characters?.name ?? '',
-      picture: characters?.picture ?? '',
-      releaseDate: characters?.birthday,
-      description: characters?.description,
+      id: id ?? 0,
+      title: name ?? '',
+      picture: picture ?? '',
+      releaseDate: birthday,
+      description: nickname,
+      status: status,
     );
   }
 }

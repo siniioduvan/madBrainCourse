@@ -19,9 +19,9 @@ class MoviesRepository {
 
   /// Метод получения данных
   static Future<HomeModel?> loadData(
-      BuildContext context, {
-        required String q,
-      }) async {
+    BuildContext context, {
+    required String q,
+  }) async {
     try {
       // Выполняем запрос
       const String url = MovieQuery.baseUrl;

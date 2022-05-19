@@ -1,9 +1,9 @@
 import 'package:film/components/constants.dart';
+import 'package:film/components/delayed_action.dart';
 import 'package:film/data/repositories/movies_repository.dart';
 import 'package:film/domain/models/home_model.dart';
 import 'package:film/presentation/pages/movie_card.dart';
 import 'package:flutter/material.dart';
-
 
 /// Наш главный экран
 class HomeScreen extends StatefulWidget {
@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   filled: true,
                   fillColor: Colors.white,
                 ),
-                //onChanged: _onSearchFieldTextChanged,
+                onChanged: _onSearchFieldTextChanged,
               ),
             ),
             // Cписок фильмов
@@ -59,23 +59,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 return data.connectionState != ConnectionState.done
                     ? const Center(child: CircularProgressIndicator())
                     : data.hasData
-                    ? data.data?.results?.isNotEmpty == true
-                    ? Expanded(
-                  child: ListView.builder(
-                    itemBuilder:
-                        (BuildContext context, int index) {
-                      return MovieCard(
-                        movieCardModel:
-                        data.data?.results?[index],
-                        key: ValueKey<int>(
-                            data.data?.results?[index].id ?? -1),
-                      );
-                    },
-                    itemCount: data.data?.results?.length ?? 0,
-                  ),
-                )
-                    : const _Empty()
-                    : const _Error();
+                        ? data.data?.results?.isNotEmpty == true
+                            ? Expanded(
+                                child: ListView.builder(
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return MovieCard(
+                                      movieCardModel:
+                                          data.data?.results?[index],
+                                      key: ValueKey<int>(
+                                          data.data?.results?[index].id ?? -1),
+                                    );
+                                  },
+                                  itemCount: data.data?.results?.length ?? 0,
+                                ),
+                              )
+                            : const _Empty()
+                        : const _Error();
               },
             ),
           ],
@@ -84,16 +84,15 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // /// Данный метод вызывается каждый раз при изменениях в поле поиска
-  // void _onSearchFieldTextChanged(String text) {
-  //   DelayedAction.run(() {
-  //     dataLoadingState = MoviesRepository.loadData(
-  //       context,
-  //       q: text.isNotEmpty ? text : MovieQuery.initialQ,
-  //     );
-  //     setState(() {});
-  //   });
-  // }
+  void _onSearchFieldTextChanged(String text) {
+    DelayedAction.run(() {
+      dataLoadingState = MoviesRepository.loadData(
+        context,
+        q: text.isNotEmpty ? text : MovieQuery.initialQ,
+      );
+      setState(() {});
+    });
+  }
 }
 
 class _Error extends StatelessWidget {

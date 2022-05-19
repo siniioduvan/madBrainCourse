@@ -23,7 +23,7 @@ class MovieLocal {
 /// Константы изображений
 class MoviePictures {
   static CacheManager pictureCache =
-  CacheManager(Config('movieImg', stalePeriod: const Duration(days: 7)));
+      CacheManager(Config('movieImg', stalePeriod: const Duration(days: 7)));
 }
 
 /// Константы для цветов

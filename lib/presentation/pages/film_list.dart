@@ -1,15 +1,12 @@
-
 import 'package:film/components/widgets/film_tile.dart';
 import 'package:film/domain/models/film_card_models.dart';
 import 'package:film/presentation/settings/pages/setting_page.dart';
 import 'package:flutter/material.dart';
 
-
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key,required this.title}) : super(key: key);
+  const HomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
-
 
   @override
   State<HomePage> createState() => _HomePageState();

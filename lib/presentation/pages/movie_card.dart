@@ -36,7 +36,7 @@ class MovieCard extends StatelessWidget {
           ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(25)),
             child: Container(
-              height: 300,
+              height: 500,
               width: double.infinity,
               decoration: const BoxDecoration(
                 color: MovieColors.cardBlackColor,
@@ -61,8 +61,7 @@ class MovieCard extends StatelessWidget {
             ),
           ),
           Text(
-            _rating(movieCardModel?.voteAverage ?? 0),
-            style: Theme.of(context).textTheme.subtitle1,
+              '${movieCardModel?.status}'
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10, bottom: 10),

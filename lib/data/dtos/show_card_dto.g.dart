@@ -7,18 +7,20 @@ part of 'show_card_dto.dart';
 // **************************************************************************
 
 ShowCardDTO _$ShowCardDTOFromJson(Map<String, dynamic> json) => ShowCardDTO(
-      id: json['char_id'] as int? ?? 0,
-      name: json['name'] as String? ?? '',
+      id: json['char_id'] as int?,
+      nickname: json['nickname'] as String?,
       picture: json['img'] as String?,
       birthday: json['birthday'] as String?,
-      description: json['occupation'] as String?,
+      name: json['name'] as String?,
+      status: json['status'] as String?,
     );
 
 Map<String, dynamic> _$ShowCardDTOToJson(ShowCardDTO instance) =>
     <String, dynamic>{
       'char_id': instance.id,
       'name': instance.name,
-      'img': instance.picture,
       'birthday': instance.birthday,
-      'occupation': instance.description,
+      'img': instance.picture,
+      'nickname': instance.nickname,
+      'status': instance.status,
     };

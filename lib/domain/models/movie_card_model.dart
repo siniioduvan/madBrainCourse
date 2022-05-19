@@ -6,6 +6,7 @@ class MovieCardModel {
   final double? voteAverage;
   final String? releaseDate;
   final String? description;
+  final String? status;
 
   const MovieCardModel({
     required this.id,
@@ -14,5 +15,6 @@ class MovieCardModel {
     this.releaseDate,
     this.voteAverage,
     this.description,
+    this.status
   });
 }
