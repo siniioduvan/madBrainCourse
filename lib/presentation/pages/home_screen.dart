@@ -2,7 +2,7 @@ import 'package:film/components/constants.dart';
 import 'package:film/components/delayed_action.dart';
 import 'package:film/data/repositories/movies_repository.dart';
 import 'package:film/domain/models/home_model.dart';
-import 'package:film/components/widgets/movie_card.dart';
+import 'package:film/presentation/widgets/movie_card.dart';
 import 'package:flutter/material.dart';
 
 /// Наш главный экран
