@@ -1,8 +1,8 @@
-import 'package:film/app/feature/settings/pages/setting_page.dart';
-import 'package:film/app/models/film_card_models.dart';
-import 'package:film/app/widgets/film_grid_card.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:film/domain/models/film_card_models.dart';
+import 'package:film/presentation/settings/pages/setting_page.dart';
 import 'package:flutter/material.dart';
+
+import '../../components/widgets/film_grid_card.dart';
 
 class FilmGrid extends StatelessWidget {
   FilmGrid({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class FilmGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+        backgroundColor: Colors.grey[900],
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.menu),
@@ -40,7 +40,7 @@ class FilmGrid extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
-              child: FilmGridCard.fromFilm(model: film[index % film.length]),
+              child: FilmCard.fromFilm(model: film[index % film.length]),
             );
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

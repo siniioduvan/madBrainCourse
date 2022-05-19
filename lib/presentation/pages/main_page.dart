@@ -1,5 +1,6 @@
-import 'package:film/app/feature/home/widgets/film_grid.dart';
-import 'package:film/app/feature/home/widgets/film_list.dart';
+import 'package:film/presentation/pages/film_grid.dart';
+import 'package:film/presentation/pages/film_list.dart';
+import 'package:film/presentation/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -10,6 +11,11 @@ class MainPage extends StatefulWidget {
       icon: Icon(Icons.local_movies_outlined),
       label: 'Feed',
       page: HomePage(title: 'Films'),
+    ),
+    _Tab(
+      icon: Icon(Icons.ondemand_video),
+      label: 'Serials',
+      page: HomeScreen(),
     ),
     _Tab(
       icon: Icon(Icons.movie_filter),

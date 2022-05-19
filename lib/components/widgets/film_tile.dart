@@ -1,8 +1,8 @@
-import 'package:film/app/models/film_card_models.dart';
+import 'package:film/domain/models/film_card_models.dart';
 import 'package:flutter/material.dart';
 
-class FilmCard extends StatelessWidget {
-  const FilmCard({
+class FilmTile extends StatelessWidget {
+  const FilmTile({
     Key? key,
     required this.title,
     required this.language,
@@ -13,11 +13,11 @@ class FilmCard extends StatelessWidget {
     required this.releaseDate,
   }) : super(key: key);
 
-  factory FilmCard.fromFilm({
+  factory FilmTile.fromFilm({
     required Film model,
     Key? key,
   }) {
-    return FilmCard(
+    return FilmTile(
       id: model.id.toString(),
       title: model.title,
       picture: model.picture,
@@ -64,7 +64,10 @@ class FilmCard extends StatelessWidget {
               children: <Widget>[
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.headline5?.copyWith(color: Colors.white),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline5
+                      ?.copyWith(color: Colors.white),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
@@ -95,10 +98,14 @@ class FilmCard extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 16, bottom: 8),
                   child: Text(
                     'Дата выхода: $releaseDate',
-                    style: Theme.of(context).textTheme.headline6?.copyWith(color: Colors.white),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6
+                        ?.copyWith(color: Colors.white),
                   ),
                 ),
-                Text(description,
+                Text(
+                  description,
                   style: TextStyle(color: Colors.white),
                 ),
               ],

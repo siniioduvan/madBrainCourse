@@ -1,14 +1,12 @@
-import 'package:film/app/feature/settings/pages/setting_page.dart';
-import 'package:film/app/models/film_card_models.dart';
-import 'package:film/app/widgets/film_card.dart';
+import 'package:film/components/widgets/film_tile.dart';
+import 'package:film/domain/models/film_card_models.dart';
+import 'package:film/presentation/settings/pages/setting_page.dart';
 import 'package:flutter/material.dart';
 
-
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key,required this.title}) : super(key: key);
+  const HomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
-
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -48,7 +46,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ListView.builder(
         itemBuilder: (BuildContext context, int index) {
-          return FilmCard.fromFilm(model: film[index % film.length]);
+          return FilmTile.fromFilm(model: film[index % film.length]);
         },
       ),
     );

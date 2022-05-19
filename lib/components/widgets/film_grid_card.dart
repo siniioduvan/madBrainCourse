@@ -1,6 +1,6 @@
-import 'package:film/app/feature/home/widgets/button/primary_button.dart';
-import 'package:film/app/feature/home/widgets/image_network.dart';
-import 'package:film/app/models/film_card_models.dart';
+import 'package:film/components/button/primary_button.dart';
+import 'package:film/components/image_network.dart';
+import 'package:film/domain/models/film_card_models.dart';
 import 'package:flutter/material.dart';
 
 class _RatingChip extends StatelessWidget {
@@ -27,8 +27,8 @@ class _RatingChip extends StatelessWidget {
   }
 }
 
-class FilmGridCard extends StatelessWidget {
-  const FilmGridCard({
+class FilmCard extends StatelessWidget {
+  const FilmCard({
     //required this.id,
     required this.title,
     required this.picture,
@@ -36,11 +36,11 @@ class FilmGridCard extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  factory FilmGridCard.fromFilm({
+  factory FilmCard.fromFilm({
     required Film model,
     Key? key,
   }) {
-    return FilmGridCard(
+    return FilmCard(
       //id: model.id,
       title: model.title,
       picture: model.picture,
@@ -91,6 +91,29 @@ class FilmGridCard extends StatelessWidget {
               onPressed: () {},
             ),
           ),
+          Padding(
+              padding: const EdgeInsets.only(bottom: 75),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    shadows: <Shadow>[
+                      Shadow(
+                        offset: Offset(10.0, 10.0),
+                        blurRadius: 3.0,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
+                      Shadow(
+                        offset: Offset(10.0, 10.0),
+                        blurRadius: 8.0,
+                        color: Color.fromARGB(125, 0, 0, 255),
+                      ),
+                    ],
+                  ),
+                ),
+              )),
         ],
       ),
     );
