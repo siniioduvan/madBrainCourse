@@ -1,12 +1,16 @@
 import 'package:film/components/constants.dart';
+import 'package:film/presentation/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 
 /// Функция вызова диалога ошибки
-void showErrorDialog(BuildContext context, {required String error}) {
-  showDialog(
-    context: context,
-    builder: (_) => ErrorDialog(error),
-  );
+void showErrorDialog({BuildContext? context, required String error}) {
+  final _context = context ?? HomeScreen.globalKey.currentContext;
+  if (_context != null) {
+    showDialog(
+      context: _context,
+      builder: (_) => ErrorDialog(error),
+    );
+  }
 }
 
 /// Простой диалог отображения ошибки

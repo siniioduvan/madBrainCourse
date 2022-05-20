@@ -71,11 +71,4 @@ class MovieCard extends StatelessWidget {
       ),
     );
   }
-
-  String _rating(double voteAverage) {
-    const prefix = MovieLocal.ratingPrefix;
-    const suffix = MovieLocal.ratingSuffix;
-    final rating = (voteAverage * 10).toInt();
-    return '$prefix $rating $suffix';
-  }
 }

@@ -1,6 +1,7 @@
-import 'package:film/components/widgets/film_tile.dart';
+
 import 'package:film/domain/models/film_card_models.dart';
 import 'package:film/presentation/settings/pages/setting_page.dart';
+import 'package:film/presentation/widgets/film_tile.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
