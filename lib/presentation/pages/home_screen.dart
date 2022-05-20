@@ -4,6 +4,7 @@ import 'package:film/domain/models/home_model.dart';
 import 'package:film/presentation/bloc/home_block.dart';
 import 'package:film/presentation/bloc/home_event.dart';
 import 'package:film/presentation/bloc/home_state.dart';
+import 'package:film/presentation/settings/pages/setting_page.dart';
 import 'package:film/presentation/widgets/movie_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,6 +36,19 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       key: HomeScreen.globalKey,
       child: Scaffold(
+        appBar: AppBar(
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  SettingsPage.path,
+                );
+              },
+            ),
+          ],
+        ),
         // Используем чтобы не закрывать список с фильмами клавиатурой
         resizeToAvoidBottomInset: true,
         backgroundColor: MovieColors.backgroundBlackColor,

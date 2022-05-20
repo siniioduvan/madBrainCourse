@@ -46,6 +46,8 @@ dependencies:
     # generators
   json_annotation: 4.4.0
 
+  # database
+  shared_preferences: ^2.0.15
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
