@@ -1,12 +1,18 @@
 import 'package:film/components/constants.dart';
 import 'package:film/components/delayed_action.dart';
-import 'package:film/data/repositories/movies_repository.dart';
 import 'package:film/domain/models/home_model.dart';
+import 'package:film/presentation/bloc/home_block.dart';
+import 'package:film/presentation/bloc/home_event.dart';
+import 'package:film/presentation/bloc/home_state.dart';
 import 'package:film/presentation/widgets/movie_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 /// Наш главный экран
 class HomeScreen extends StatefulWidget {
+  static final GlobalKey<State<StatefulWidget>> globalKey = GlobalKey();
+
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -17,21 +23,17 @@ class _HomeScreenState extends State<HomeScreen> {
   /// Контроллер для работы с полем поиска
   final TextEditingController textController = TextEditingController();
 
-  /// Наши данные по фильмам для отображения
-  Future<HomeModel?>? dataLoadingState;
-
   /// Загрузим наши фильмы сразу при запуске
   @override
   void didChangeDependencies() {
-    dataLoadingState ??=
-        MoviesRepository.loadData(context, q: MovieQuery.initialQ);
+    context.read<HomeBloc>().add(LoadDataEvent());
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    // Используем SafeArea чтобы нормально отображалась шторка на IOS
     return SafeArea(
+      key: HomeScreen.globalKey,
       child: Scaffold(
         // Используем чтобы не закрывать список с фильмами клавиатурой
         resizeToAvoidBottomInset: true,
@@ -52,30 +54,37 @@ class _HomeScreenState extends State<HomeScreen> {
                 onChanged: _onSearchFieldTextChanged,
               ),
             ),
-            // Cписок фильмов
-            FutureBuilder<HomeModel?>(
-              future: dataLoadingState,
-              builder: (BuildContext context, AsyncSnapshot<HomeModel?> data) {
-                return data.connectionState != ConnectionState.done
-                    ? const Center(child: CircularProgressIndicator())
-                    : data.hasData
+            BlocBuilder<HomeBloc, HomeState>(
+              buildWhen: (oldState, newState) => oldState.data != newState.data,
+              builder: (context, state) {
+                return FutureBuilder<HomeModel?>(
+                  future: state.data,
+                  builder:
+                      (BuildContext context, AsyncSnapshot<HomeModel?> data) {
+                    return data.connectionState != ConnectionState.done
+                        ? const Center(child: CircularProgressIndicator())
+                        : data.hasData
                         ? data.data?.results?.isNotEmpty == true
-                            ? Expanded(
-                                child: ListView.builder(
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return MovieCard(
-                                      movieCardModel:
-                                          data.data?.results?[index],
-                                      key: ValueKey<int>(
-                                          data.data?.results?[index].id ?? -1),
-                                    );
-                                  },
-                                  itemCount: data.data?.results?.length ?? 0,
-                                ),
-                              )
-                            : const _Empty()
+                        ? Expanded(
+                      child: ListView.builder(
+                        itemBuilder:
+                            (BuildContext context, int index) {
+                          return MovieCard(
+                            movieCardModel:
+                            data.data?.results?[index],
+                            key: ValueKey<int>(
+                                data.data?.results?[index].id ??
+                                    -1),
+                          );
+                        },
+                        itemCount:
+                        data.data?.results?.length ?? 0,
+                      ),
+                    )
+                        : const _Empty()
                         : const _Error();
+                  },
+                );
               },
             ),
           ],
@@ -84,13 +93,10 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  /// Данный метод вызывается каждый раз при изменениях в поле поиска
   void _onSearchFieldTextChanged(String text) {
     DelayedAction.run(() {
-      dataLoadingState = MoviesRepository.loadData(
-        context,
-        q: text.isNotEmpty ? text : MovieQuery.initialQ,
-      );
-      setState(() {});
+      context.read<HomeBloc>().add(SearchChangedEvent(search: text));
     });
   }
 }
@@ -100,10 +106,7 @@ class _Error extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(
-      MovieQuery.pisecImageUrl,
-      fit: BoxFit.cover,
-    );
+    return Image.network(MovieQuery.pisecImageUrl, fit: BoxFit.cover);
   }
 }
 
@@ -112,9 +115,6 @@ class _Empty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(
-      MovieQuery.nothingImageUrl,
-      fit: BoxFit.cover,
-    );
+    return Image.network(MovieQuery.nothingImageUrl, fit: BoxFit.cover);
   }
 }
