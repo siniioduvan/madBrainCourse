@@ -2,7 +2,7 @@ import 'package:film/data/repositories/movies_repository.dart';
 import 'package:film/error_bloc/error_bloc.dart';
 import 'package:film/error_bloc/error_event.dart';
 import 'package:film/presentation/bloc/home_block.dart';
-import 'package:film/presentation/pages/home_screen.dart';
+import 'package:film/presentation/pages/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
             lazy: false,
             create: (BuildContext context) =>
                 HomeBloc(context.read<MoviesRepository>()),
-            child: const HomeScreen(),
+            child: const MainPage(),
           ),
         ),
       ),
