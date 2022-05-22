@@ -1,8 +1,8 @@
-
 import 'package:film/presentation/pages/main_page.dart';
 import 'package:film/presentation/pages/not_found_page.dart';
 import 'package:film/presentation/settings/pages/setting_page.dart';
 import 'package:flutter/material.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -34,6 +34,8 @@ class MyApp extends StatelessWidget {
         }
 
         return MaterialPageRoute(
+          // Более короткая версия функции
+          // (_, __, ___ и так далее) обозначают неиспользуемые параметры
           builder: (_) => const NotFoundPage(),
         );
       },
