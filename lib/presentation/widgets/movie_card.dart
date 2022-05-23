@@ -1,15 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:film/components/button/primary_button.dart';
 import 'package:film/components/constants.dart';
 import 'package:film/domain/models/movie_card_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 
 /// Элемент верстки нашей карточки с фильмом
 class MovieCard extends StatelessWidget {
   final MovieCardModel? movieCardModel;
+  final VoidCallback? onClickFavoriteButton;
+  final String textButton;
 
   const MovieCard({
     this.movieCardModel,
+    this.onClickFavoriteButton,
+    required this.textButton,
     Key? key,
   }) : super(key: key);
 
@@ -65,7 +69,13 @@ class MovieCard extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10, bottom: 10),
-            child: Html(data: movieCardModel?.description ?? ''),
+            child: PrimaryButton(
+              textButton,
+              onPressed: () {
+                //Вызываем функци обратного вызова
+                onClickFavoriteButton?.call();
+              },
+            ),
           )
         ],
       ),

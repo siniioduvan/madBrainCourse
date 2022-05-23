@@ -15,18 +15,21 @@ class MovieQuery {
 class MovieLocal {
   static const String error = 'Ошибка';
   static const String unknown = 'Неизвестно';
+  static const String ratingPrefix = 'Оценка: ';
+  static const String ratingSuffix = '/ 10';
   static const String search = 'Поиск';
+  static const String addFavourites = 'Добавить в избранное';
+  static const String deleteFavourites = 'Удалить из избранного';
 }
 
 /// Константы изображений
 class MoviePictures {
   static CacheManager pictureCache =
-      CacheManager(Config('movieImg', stalePeriod: const Duration(days: 7)));
+  CacheManager(Config('movieImg', stalePeriod: const Duration(days: 7)));
 }
 
 /// Константы для цветов
 class MovieColors {
-  static const Color greenColor = Color.fromRGBO(54, 164, 94, 1);
   static const Color greyColor = Color.fromRGBO(84, 84, 84, 1);
   static const Color cardBlackColor = Color.fromRGBO(28, 28, 28, 1.0);
   static const Color backgroundBlackColor = Color.fromRGBO(16, 16, 16, 1.0);

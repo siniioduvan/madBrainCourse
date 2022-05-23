@@ -53,7 +53,7 @@ class _SettingsPageState extends State<SettingsPageContent> {
             PrimaryButton('Сохранить имя',
                 onPressed: () => context
                     .read<SettingBloc>()
-                    .add(const SaveNameEvent(name: 'Андрей'))),
+                    .add(const SaveNameEvent(name: 'Иван Васильевич'))),
             PrimaryButton('Очистить имя',
                 onPressed: () =>
                     context.read<SettingBloc>().add(ClearNameEvent())),

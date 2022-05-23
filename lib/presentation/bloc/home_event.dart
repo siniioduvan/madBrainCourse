@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:film/domain/models/movie_card_model.dart';
 
 abstract class HomeEvent extends Equatable {
   const HomeEvent();
@@ -17,3 +18,18 @@ class SearchChangedEvent extends HomeEvent {
 }
 
 class LoadDataEvent extends HomeEvent {}
+
+/// Добавление / удаление избарнно по клику на кнопку
+class ChangedFavourites extends HomeEvent {
+  final MovieCardModel? model;
+
+  const ChangedFavourites({required this.model});
+
+}
+/// Событие о изменении данных в БД
+class ChangedMoviesDB extends HomeEvent {
+  final List<MovieCardModel> models;
+
+  const ChangedMoviesDB({required this.models});
+
+}

@@ -1,3 +1,5 @@
+import 'package:film/data/db/database.dart';
+
 /// Чистая модель карточки с фильмом для отображения на UI
 class MovieCardModel {
   final int id;
@@ -17,4 +19,32 @@ class MovieCardModel {
     this.description,
     this.status
   });
+}
+
+/// Функция преобразования из [MovieCardModel] в [MovieTableData]
+extension MovieCardModelToDatabase on MovieCardModel {
+  MovieTableData toDatabase() {
+    return MovieTableData(
+      id: id,
+      title: title,
+      picture: picture,
+      releaseDate: releaseDate,
+      voteAverage: voteAverage,
+      description: description,
+    );
+  }
+}
+
+/// Функция преобразования из [MovieTableData] в [MovieCardModel]
+extension MovieTableDataToDomain on MovieTableData {
+  MovieCardModel toDomain() {
+    return MovieCardModel(
+      id: id,
+      title: title,
+      picture: picture,
+      releaseDate: releaseDate,
+      voteAverage: voteAverage,
+      description: description,
+    );
+  }
 }
