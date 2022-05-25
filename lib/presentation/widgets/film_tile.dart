@@ -97,7 +97,7 @@ class FilmTile extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 16, bottom: 8),
                   child: Text(
-                    'Дата выхода: $releaseDate',
+                    'Дата рождения: $releaseDate',
                     style: Theme.of(context)
                         .textTheme
                         .headline6

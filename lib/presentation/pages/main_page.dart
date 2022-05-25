@@ -1,3 +1,4 @@
+import 'package:film/presentation/pages/favorite_page.dart';
 import 'package:film/presentation/pages/film_grid.dart';
 import 'package:film/presentation/pages/film_list.dart';
 import 'package:film/presentation/pages/home_screen.dart';
@@ -14,8 +15,13 @@ class MainPage extends StatefulWidget {
     ),
     _Tab(
       icon: Icon(Icons.ondemand_video),
-      label: 'Serials',
+      label: 'Breaking Bad',
       page: HomeScreen(),
+    ),
+    _Tab(
+      icon: Icon(Icons.favorite),
+      label: 'Favorite',
+      page: FavouritesScreen(),
     ),
     _Tab(
       icon: Icon(Icons.movie_filter),
@@ -44,6 +50,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: MainPage._tabs.elementAt(_selectedIndex).page,
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: List.generate(
           MainPage._tabs.length,
           (index) {

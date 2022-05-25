@@ -8,6 +8,7 @@ import 'package:film/presentation/settings/pages/setting_page.dart';
 import 'package:film/presentation/widgets/movie_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:collection/collection.dart';
 
 
 /// Наш главный экран
