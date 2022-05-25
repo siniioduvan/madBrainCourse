@@ -1,6 +1,6 @@
 
 import 'package:film/domain/models/film_card_models.dart';
-import 'package:film/presentation/settings/pages/setting_page.dart';
+import 'package:film/domain/models/movie_card_model.dart';
 import 'package:film/presentation/widgets/film_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +39,6 @@ class _HomePageState extends State<HomePage> {
               Navigator.pushNamed(
                 context,
                 '/settings',
-                arguments: const SettingsArguments('BOBIK'),
               );
             },
           ),

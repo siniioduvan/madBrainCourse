@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:drift/drift.dart';
 import 'package:film/components/constants.dart';
+import 'package:film/data/db/database.dart';
 import 'package:film/data/dtos/show_card_dto.dart';
 import 'package:film/data/mappers/show_mapper.dart';
 import 'package:film/data/repositories/interceptor/dio_error_interceptor.dart';
@@ -15,6 +17,10 @@ class MoviesRepository {
   /// Наш основной объект для выполнения запросов
   late final Dio _dio;
 
+  /// Объект базы данных
+  late final Database _db;
+
+
   MoviesRepository({required this.onErrorHandler}) {
     _dio = Dio()
       ..interceptors.addAll([
@@ -24,6 +30,9 @@ class MoviesRepository {
         ),
         ErrorInterceptor(onErrorHandler),
       ]);
+
+    /// Инициализируем базу данных
+    _db = Database();
   }
 
   /// Метод получения данных
@@ -44,6 +53,7 @@ class MoviesRepository {
 
     // Конвертируем ДТО в модели
     final movieModels = <MovieCardModel>[];
+
     for (final dto in dtos) {
       movieModels.add(dto.toDomain());
     }
@@ -51,5 +61,38 @@ class MoviesRepository {
     // Собираем модели карточек фильмов и возвращаем единую модель
     final HomeModel model = HomeModel(results: movieModels);
     return model;
+  }
+
+  /// Получаем весь список фильмов из базы
+  Future<List<MovieCardModel>> getAllMoviesDB() async {
+    // Получаем список объектов из базы в моделях БД
+    List<MovieTableData> moviesDB = await _db.select(_db.movieTable).get();
+    // Преобразуем модели БД в понятные модели для наших виджетов
+    return moviesDB
+        .map((MovieTableData movieTableData) => movieTableData.toDomain())
+        .toList();
+  }
+
+  /// Добавляем элемент из базы по ID
+  Future<void> insertMovieDB(MovieCardModel movieCardModel) async {
+    // Передаем нашу модель и преобразуем её в модель для БД с помощью .toDatabase()
+    await _db.into(_db.movieTable).insert(
+      movieCardModel.toDatabase(),
+      mode: InsertMode.insertOrReplace,
+    );
+  }
+
+  /// Удаляем элемент из базы по ID
+  Future<void> deleteMovieDB(int id) async {
+    await (_db.delete(_db.movieTable)
+      ..where((movieTable) => movieTable.id.equals(id)))
+        .go();
+  }
+
+  /// Подписка на изменения в БД
+  Stream<List<MovieCardModel>> onChangedMoviesDB() {
+    return (_db.select(_db.movieTable))
+        .map((MovieTableData movieTableData) => movieTableData.toDomain())
+        .watch();
   }
 }
