@@ -16,9 +16,9 @@ class DelayedAction {
   static Timer? _timer;
 
   static void run(
-      VoidCallback action, {
-        Duration delay = const Duration(milliseconds: 200),
-      }) {
+    VoidCallback action, {
+    Duration delay = const Duration(milliseconds: 200),
+  }) {
     _timer?.cancel();
     _timer = Timer(delay, action);
   }

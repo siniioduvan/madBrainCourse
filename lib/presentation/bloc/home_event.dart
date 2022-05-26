@@ -24,12 +24,11 @@ class ChangedFavourites extends HomeEvent {
   final MovieCardModel? model;
 
   const ChangedFavourites({required this.model});
-
 }
+
 /// Событие о изменении данных в БД
 class ChangedMoviesDB extends HomeEvent {
   final List<MovieCardModel> models;
 
   const ChangedMoviesDB({required this.models});
-
 }

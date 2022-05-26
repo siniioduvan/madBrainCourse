@@ -3,7 +3,6 @@ import 'package:film/error_bloc/error_event.dart';
 import 'package:film/error_bloc/error_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class ErrorBloc extends Bloc<ErrorEvent, ErrorState> {
   ErrorBloc() : super(const ErrorState()) {
     on<ShowDialogEvent>(_onShowDialog);

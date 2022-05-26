@@ -4,14 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingBloc extends Bloc<SettingEvent, SettingState> {
-
   static const String tagName = 'name';
 
   SettingBloc() : super(const SettingState()) {
     on<LoadNameEvent>(_onLoadName);
     on<SaveNameEvent>(_onSaveName);
     on<ClearNameEvent>(_onClearName);
-
   }
 
   void _onLoadName(LoadNameEvent event, Emitter<SettingState> emit) async {
@@ -31,5 +29,4 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
     await prefs.remove(tagName);
     emit(state.copyWith(name: ''));
   }
-
 }

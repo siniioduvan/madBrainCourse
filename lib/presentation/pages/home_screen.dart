@@ -1,5 +1,4 @@
 import 'package:film/components/constants.dart';
-import 'package:film/components/delayed_action.dart';
 import 'package:film/domain/models/home_model.dart';
 import 'package:film/presentation/bloc/home_block.dart';
 import 'package:film/presentation/bloc/home_event.dart';
@@ -9,7 +8,6 @@ import 'package:film/presentation/widgets/movie_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:collection/collection.dart';
-
 
 /// Наш главный экран
 class HomeScreen extends StatefulWidget {
@@ -38,6 +36,10 @@ class _HomeScreenState extends State<HomeScreen> {
       key: HomeScreen.globalKey,
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () {},
+          ),
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.settings),
@@ -55,23 +57,9 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: MovieColors.backgroundBlackColor,
         body: Column(
           children: [
-            // Поле поиска
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
-              child: TextField(
-                controller: textController,
-                maxLines: 1,
-                decoration: const InputDecoration(
-                  labelText: MovieLocal.search,
-                  filled: true,
-                  fillColor: Colors.white,
-                ),
-                onChanged: _onSearchFieldTextChanged,
-              ),
-            ),
             BlocBuilder<HomeBloc, HomeState>(
               buildWhen: (oldState, newState) =>
-              oldState.data != newState.data ||
+                  oldState.data != newState.data ||
                   // добавим что список будет перерисовывать при изменении
                   // списка избранных
                   oldState.favouritesMovies != newState.favouritesMovies,
@@ -82,58 +70,58 @@ class _HomeScreenState extends State<HomeScreen> {
                       (BuildContext context, AsyncSnapshot<HomeModel?> data) {
                     return data.connectionState != ConnectionState.done
                         ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
+                            child: CircularProgressIndicator(),
+                          )
                         : data.hasData
-                        ? data.data?.results?.isNotEmpty == true
-                        ? Expanded(
-                      child: ListView.builder(
-                        itemBuilder:
-                            (BuildContext context, int index) {
-                          // проверяем есть ли элемент в избранном
-                          bool isFavourite = false;
-                          if (state
-                              .favouritesMovies?.isNotEmpty ==
-                              true) {
-                            var moviesFavourite = state
-                                .favouritesMovies
-                                ?.firstWhereOrNull((element) =>
-                            element.id ==
-                                data.data?.results?[index]
-                                    .id);
-                            if (moviesFavourite != null) {
-                              isFavourite = true;
-                            }
-                          }
+                            ? data.data?.results?.isNotEmpty == true
+                                ? Expanded(
+                                    child: ListView.builder(
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        // проверяем есть ли элемент в избранном
+                                        bool isFavourite = false;
+                                        if (state
+                                                .favouritesMovies?.isNotEmpty ==
+                                            true) {
+                                          var moviesFavourite = state
+                                              .favouritesMovies
+                                              ?.firstWhereOrNull((element) =>
+                                                  element.id ==
+                                                  data.data?.results?[index]
+                                                      .id);
+                                          if (moviesFavourite != null) {
+                                            isFavourite = true;
+                                          }
+                                        }
 
-                          return MovieCard(
-                            // в зависимости от состояния меняем цвет
-                            textButton: isFavourite
-                                ? MovieLocal.deleteFavourites
-                                : MovieLocal.addFavourites,
-                            // callback по клику на кнопку
-                            onClickFavoriteButton: () {
-                              //отправляем событие в блок
-                              context.read<HomeBloc>().add(
-                                ChangedFavourites(
-                                  model: data
-                                      .data?.results?[index],
-                                ),
-                              );
-                            },
-                            movieCardModel:
-                            data.data?.results?[index],
-                            key: ValueKey<int>(
-                                data.data?.results?[index].id ??
-                                    -1),
-                          );
-                        },
-                        itemCount:
-                        data.data?.results?.length ?? 0,
-                      ),
-                    )
-                        : const _Empty()
-                        : const _Error();
+                                        return MovieCard(
+                                          // в зависимости от состояния меняем цвет
+                                          textButton: isFavourite
+                                              ? MovieLocal.deleteFavourites
+                                              : MovieLocal.addFavourites,
+                                          // callback по клику на кнопку
+                                          onClickFavoriteButton: () {
+                                            //отправляем событие в блок
+                                            context.read<HomeBloc>().add(
+                                                  ChangedFavourites(
+                                                    model: data
+                                                        .data?.results?[index],
+                                                  ),
+                                                );
+                                          },
+                                          movieCardModel:
+                                              data.data?.results?[index],
+                                          key: ValueKey<int>(
+                                              data.data?.results?[index].id ??
+                                                  -1),
+                                        );
+                                      },
+                                      itemCount:
+                                          data.data?.results?.length ?? 0,
+                                    ),
+                                  )
+                                : const _Empty()
+                            : const _Error();
                   },
                 );
               },
@@ -142,13 +130,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-  }
-
-  /// Данный метод вызывается каждый раз при изменениях в поле поиска
-  void _onSearchFieldTextChanged(String text) {
-    DelayedAction.run(() {
-      context.read<HomeBloc>().add(SearchChangedEvent(search: text));
-    });
   }
 }
 

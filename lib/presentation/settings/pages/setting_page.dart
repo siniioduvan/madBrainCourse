@@ -43,7 +43,7 @@ class _SettingsPageState extends State<SettingsPageContent> {
           children: [
             BlocBuilder<SettingBloc, SettingState>(
                 buildWhen: (oldState, newState) =>
-                oldState.name != newState.name,
+                    oldState.name != newState.name,
                 builder: (context2, state) {
                   return Text(state.name ?? '');
                 }),

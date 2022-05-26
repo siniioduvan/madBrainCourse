@@ -10,15 +10,14 @@ class MovieCardModel {
   final String? description;
   final String? status;
 
-  const MovieCardModel({
-    required this.id,
-    required this.title,
-    this.picture,
-    this.releaseDate,
-    this.voteAverage,
-    this.description,
-    this.status
-  });
+  const MovieCardModel(
+      {required this.id,
+      required this.title,
+      this.picture,
+      this.releaseDate,
+      this.voteAverage,
+      this.description,
+      this.status});
 }
 
 /// Функция преобразования из [MovieCardModel] в [MovieTableData]
@@ -31,6 +30,7 @@ extension MovieCardModelToDatabase on MovieCardModel {
       releaseDate: releaseDate,
       voteAverage: voteAverage,
       description: description,
+      status: status,
     );
   }
 }
@@ -45,6 +45,7 @@ extension MovieTableDataToDomain on MovieTableData {
       releaseDate: releaseDate,
       voteAverage: voteAverage,
       description: description,
+      status: status,
     );
   }
 }

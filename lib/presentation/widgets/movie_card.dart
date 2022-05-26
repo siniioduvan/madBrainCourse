@@ -20,7 +20,7 @@ class MovieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
+      width: 250,
       margin: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.white54,
@@ -64,11 +64,9 @@ class MovieCard extends StatelessWidget {
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
-          Text(
-              '${movieCardModel?.status}'
-          ),
+          Text('${movieCardModel?.status}'),
           Padding(
-            padding: const EdgeInsets.only(left: 10, bottom: 10),
+            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
             child: PrimaryButton(
               textButton,
               onPressed: () {

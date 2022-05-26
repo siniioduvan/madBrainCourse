@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:film/components/constants.dart';
 
-
 class ErrorInterceptor extends Interceptor {
   ErrorInterceptor(this.onErrorHandler);
 

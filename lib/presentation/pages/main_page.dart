@@ -1,32 +1,20 @@
 import 'package:film/presentation/pages/favorite_page.dart';
-import 'package:film/presentation/pages/film_grid.dart';
-import 'package:film/presentation/pages/film_list.dart';
 import 'package:film/presentation/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
-  static List<_Tab> _tabs = <_Tab>[
-    _Tab(
-      icon: Icon(Icons.local_movies_outlined),
-      label: 'Feed',
-      page: HomePage(title: 'Films'),
-    ),
-    _Tab(
+  static final List<_Tab> _tabs = <_Tab>[
+    const _Tab(
       icon: Icon(Icons.ondemand_video),
       label: 'Breaking Bad',
       page: HomeScreen(),
     ),
-    _Tab(
+    const _Tab(
       icon: Icon(Icons.favorite),
       label: 'Favorite',
       page: FavouritesScreen(),
-    ),
-    _Tab(
-      icon: Icon(Icons.movie_filter),
-      label: 'Catalog',
-      page: FilmGrid(),
     ),
   ];
 

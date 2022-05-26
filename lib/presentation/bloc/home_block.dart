@@ -42,7 +42,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(state.copyWith(data: repository.loadData(q: search)));
   }
 
-  void _onClickFavourites(ChangedFavourites event, Emitter<HomeState> emit) async {
+  void _onClickFavourites(
+      ChangedFavourites event, Emitter<HomeState> emit) async {
     final MovieCardModel? targetMovie = event.model;
 
     MovieCardModel? movie;

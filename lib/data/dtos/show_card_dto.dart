@@ -23,7 +23,6 @@ class ShowCardDTO {
   @JsonKey(name: 'status')
   final String? status;
 
-
   ShowCardDTO({
     this.id,
     this.nickname,

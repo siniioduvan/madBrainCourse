@@ -20,7 +20,6 @@ class MoviesRepository {
   /// Объект базы данных
   late final Database _db;
 
-
   MoviesRepository({required this.onErrorHandler}) {
     _dio = Dio()
       ..interceptors.addAll([
@@ -77,15 +76,15 @@ class MoviesRepository {
   Future<void> insertMovieDB(MovieCardModel movieCardModel) async {
     // Передаем нашу модель и преобразуем её в модель для БД с помощью .toDatabase()
     await _db.into(_db.movieTable).insert(
-      movieCardModel.toDatabase(),
-      mode: InsertMode.insertOrReplace,
-    );
+          movieCardModel.toDatabase(),
+          mode: InsertMode.insertOrReplace,
+        );
   }
 
   /// Удаляем элемент из базы по ID
   Future<void> deleteMovieDB(int id) async {
     await (_db.delete(_db.movieTable)
-      ..where((movieTable) => movieTable.id.equals(id)))
+          ..where((movieTable) => movieTable.id.equals(id)))
         .go();
   }
 
