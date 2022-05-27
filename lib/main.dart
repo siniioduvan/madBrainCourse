@@ -5,10 +5,20 @@ import 'package:film/presentation/bloc/home_block.dart';
 import 'package:film/presentation/pages/main_page.dart';
 import 'package:film/presentation/pages/not_found_page.dart';
 import 'package:film/presentation/settings/pages/setting_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async {
+  /// Преинициализация перед инициализацией Firebase
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
+
+  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+
   runApp(const MyApp());
 }
 
