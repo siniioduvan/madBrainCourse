@@ -1,5 +1,8 @@
 import 'package:film/components/constants.dart';
+import 'package:film/components/locals/locals.dart';
 import 'package:film/domain/models/home_model.dart';
+import 'package:film/locale_bloc/locale_bloc.dart';
+import 'package:film/locale_bloc/locale_event.dart';
 import 'package:film/presentation/bloc/home_block.dart';
 import 'package:film/presentation/bloc/home_event.dart';
 import 'package:film/presentation/bloc/home_state.dart';
@@ -22,6 +25,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   /// Контроллер для работы с полем поиска
   final TextEditingController textController = TextEditingController();
+  bool isEnLocale = false;
 
   /// Загрузим наши фильмы сразу при запуске
   @override
@@ -57,6 +61,32 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: MovieColors.backgroundBlackColor,
         body: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Row(
+                children: [
+                  Checkbox(
+                    value: isEnLocale,
+                    onChanged: (val) {
+                      isEnLocale = val ?? false;
+                      context.read<LocaleBloc>().add(ChangeLocaleEvent(
+                          isEnLocale
+                              ? availableLocales[enLocale]!
+                              : availableLocales[ruLocale]!));
+                    },
+                  ),
+                  Flexible(
+                    child: Text(
+                      context.locale.switchLanguage,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline5!
+                          .copyWith(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             BlocBuilder<HomeBloc, HomeState>(
               buildWhen: (oldState, newState) =>
                   oldState.data != newState.data ||
@@ -97,8 +127,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                         return MovieCard(
                                           // в зависимости от состояния меняем цвет
                                           textButton: isFavourite
-                                              ? MovieLocal.deleteFavourites
-                                              : MovieLocal.addFavourites,
+                                              ? context.locale.deleteFavourites
+                                              : context.locale.addFavourites,
                                           // callback по клику на кнопку
                                           onClickFavoriteButton: () {
                                             //отправляем событие в блок

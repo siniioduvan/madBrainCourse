@@ -1,4 +1,5 @@
 import 'package:film/components/constants.dart';
+import 'package:film/components/locals/locals.dart';
 import 'package:film/presentation/bloc/home_block.dart';
 import 'package:film/presentation/bloc/home_event.dart';
 import 'package:film/presentation/bloc/home_state.dart';
@@ -45,7 +46,7 @@ class FavouritesScreen extends StatelessWidget {
                       final currentCardModel = state.favouritesMovies?[index];
 
                       return MovieCard(
-                        textButton: MovieLocal.deleteFavourites,
+                        textButton: context.locale.deleteFavourites,
                         // callback по клику на кнопку
                         onClickFavoriteButton: () {
                           //отправляем событие в блок
