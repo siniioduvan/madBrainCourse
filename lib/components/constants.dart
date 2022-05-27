@@ -11,17 +11,6 @@ class MovieQuery {
   static const String initialQ = 'white';
 }
 
-// /// Константы локализации
-// class MovieLocal {
-//   static const String error = 'Ошибка';
-//   static const String unknown = 'Неизвестно';
-//   static const String ratingPrefix = 'Оценка: ';
-//   static const String ratingSuffix = '/ 10';
-//   static const String search = 'Поиск';
-//   static const String addFavourites = 'Добавить в избранное';
-//   static const String deleteFavourites = 'Удалить из избранного';
-// }
-
 /// Константы изображений
 class MoviePictures {
   static CacheManager pictureCache =

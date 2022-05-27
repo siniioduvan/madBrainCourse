@@ -3,7 +3,6 @@ import 'package:film/components/locals/locals.dart';
 import 'package:film/presentation/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 
-
 /// Функция вызова диалога ошибки
 void showErrorDialog({BuildContext? context, required String error}) {
   final _context = context ?? HomeScreen.globalKey.currentContext;

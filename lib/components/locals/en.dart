@@ -1,5 +1,3 @@
-
-
 import 'package:film/components/locals/locale_base.dart';
 
 class LocaleEn implements LocaleBase {
