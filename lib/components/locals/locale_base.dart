@@ -18,4 +18,24 @@ abstract class LocaleBase {
   String get breakingBad;
 
   String get favourite;
+
+  String get more;
+
+  String get detailsTitle;
+
+  String get favouritesTitle;
+
+  String get feedTitle;
+
+  String get settingsTitle;
+
+  String get settingsBack;
+
+  String get settingsExit;
+
+  String get settingsGetName;
+
+  String get settingsClearName;
+
+  String get settingsSaveName;
 }

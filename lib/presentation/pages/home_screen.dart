@@ -1,8 +1,10 @@
 import 'package:film/components/constants.dart';
+import 'package:film/components/delayed_action.dart';
 import 'package:film/components/locals/locals.dart';
 import 'package:film/domain/models/home_model.dart';
 import 'package:film/locale_bloc/locale_bloc.dart';
 import 'package:film/locale_bloc/locale_event.dart';
+import 'package:film/locale_bloc/locale_state.dart';
 import 'package:film/presentation/bloc/home_block.dart';
 import 'package:film/presentation/bloc/home_event.dart';
 import 'package:film/presentation/bloc/home_state.dart';
@@ -25,7 +27,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   /// Контроллер для работы с полем поиска
   final TextEditingController textController = TextEditingController();
-  bool isEnLocale = false;
 
   /// Загрузим наши фильмы сразу при запуске
   @override
@@ -59,107 +60,135 @@ class _HomeScreenState extends State<HomeScreen> {
         // Используем чтобы не закрывать список с фильмами клавиатурой
         resizeToAvoidBottomInset: true,
         backgroundColor: MovieColors.backgroundBlackColor,
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0),
-              child: Row(
-                children: [
-                  Checkbox(
-                    value: isEnLocale,
-                    onChanged: (val) {
-                      isEnLocale = val ?? false;
-                      context.read<LocaleBloc>().add(ChangeLocaleEvent(
-                          isEnLocale
-                              ? availableLocales[enLocale]!
-                              : availableLocales[ruLocale]!));
-                    },
+        body: RefreshIndicator(
+          onRefresh: _onRefresh,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
+                child: TextField(
+                  controller: textController,
+                  maxLines: 1,
+                  decoration: InputDecoration(
+                    labelText: context.locale.search,
+                    filled: true,
+                    fillColor: Colors.white,
                   ),
-                  Flexible(
-                    child: Text(
-                      context.locale.switchLanguage,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline5!
-                          .copyWith(color: Colors.white),
-                    ),
-                  ),
-                ],
+                  onChanged: _onSearchFieldTextChanged,
+                ),
               ),
-            ),
-            BlocBuilder<HomeBloc, HomeState>(
-              buildWhen: (oldState, newState) =>
-                  oldState.data != newState.data ||
-                  // добавим что список будет перерисовывать при изменении
-                  // списка избранных
-                  oldState.favouritesMovies != newState.favouritesMovies,
-              builder: (context, state) {
-                return FutureBuilder<HomeModel?>(
-                  future: state.data,
-                  builder:
-                      (BuildContext context, AsyncSnapshot<HomeModel?> data) {
-                    return data.connectionState != ConnectionState.done
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : data.hasData
-                            ? data.data?.results?.isNotEmpty == true
-                                ? Expanded(
-                                    child: ListView.builder(
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        // проверяем есть ли элемент в избранном
-                                        bool isFavourite = false;
-                                        if (state
-                                                .favouritesMovies?.isNotEmpty ==
-                                            true) {
-                                          var moviesFavourite = state
-                                              .favouritesMovies
-                                              ?.firstWhereOrNull((element) =>
-                                                  element.id ==
-                                                  data.data?.results?[index]
-                                                      .id);
-                                          if (moviesFavourite != null) {
-                                            isFavourite = true;
-                                          }
-                                        }
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Row(
+                  children: [
+                    BlocBuilder<LocaleBloc, LocaleState>(
+                      builder: (context, state) => Checkbox(
+                        value: state.isEnLocale,
+                        onChanged: (val) {
+                          final isEnLocale = val ?? false;
+                          context
+                              .read<LocaleBloc>()
+                              .add(ChangeLocaleEvent(isEnLocale));
+                        },
+                      ),
+                    ),
+                    Flexible(
+                      child: Text(
+                        context.locale.switchLanguage,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline5!
+                            .copyWith(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              BlocBuilder<HomeBloc, HomeState>(
+                buildWhen: (oldState, newState) =>
+                oldState.data != newState.data ||
+                    // добавим что список будет перерисовывать при изменении
+                    // списка избранных
+                    oldState.favouritesMovies != newState.favouritesMovies,
+                builder: (context, state) {
+                  return FutureBuilder<HomeModel?>(
+                    future: state.data,
+                    builder:
+                        (BuildContext context, AsyncSnapshot<HomeModel?> data) {
+                      return data.connectionState != ConnectionState.done
+                          ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                          : data.hasData
+                          ? data.data?.results?.isNotEmpty == true
+                          ? Expanded(
+                        child: ListView.builder(
+                          itemBuilder:
+                              (BuildContext context, int index) {
+                            // проверяем есть ли элемент в избранном
+                            bool isFavourite = false;
+                            if (state.favouritesMovies
+                                ?.isNotEmpty ==
+                                true) {
+                              var moviesFavourite = state
+                                  .favouritesMovies
+                                  ?.firstWhereOrNull((element) =>
+                              element.id ==
+                                  data.data?.results?[index]
+                                      .id);
+                              if (moviesFavourite != null) {
+                                isFavourite = true;
+                              }
+                            }
 
-                                        return MovieCard(
-                                          // в зависимости от состояния меняем цвет
-                                          textButton: isFavourite
-                                              ? context.locale.deleteFavourites
-                                              : context.locale.addFavourites,
-                                          // callback по клику на кнопку
-                                          onClickFavoriteButton: () {
-                                            //отправляем событие в блок
-                                            context.read<HomeBloc>().add(
-                                                  ChangedFavourites(
-                                                    model: data
-                                                        .data?.results?[index],
-                                                  ),
-                                                );
-                                          },
-                                          movieCardModel:
-                                              data.data?.results?[index],
-                                          key: ValueKey<int>(
-                                              data.data?.results?[index].id ??
-                                                  -1),
-                                        );
-                                      },
-                                      itemCount:
-                                          data.data?.results?.length ?? 0,
-                                    ),
-                                  )
-                                : const _Empty()
-                            : const _Error();
-                  },
-                );
-              },
-            ),
-          ],
+                            return MovieCard(
+                              // в зависимости от состояния меняем цвет
+                              textButton: isFavourite
+                                  ? context
+                                  .locale.deleteFavourites
+                                  : context.locale.addFavourites,
+                              // callback по клику на кнопку
+                              onClickFavoriteButton: () {
+                                //отправляем событие в блок
+                                context.read<HomeBloc>().add(
+                                  ChangedFavourites(
+                                    model: data.data
+                                        ?.results?[index],
+                                  ),
+                                );
+                              },
+                              movieCardModel:
+                              data.data?.results?[index],
+                              key: ValueKey<int>(
+                                  data.data?.results?[index].id ??
+                                      -1),
+                            );
+                          },
+                          itemCount:
+                          data.data?.results?.length ?? 0,
+                        ),
+                      )
+                          : const _Empty()
+                          : const _Error();
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  void _onSearchFieldTextChanged(String text) {
+    DelayedAction.run(() {
+      context.read<HomeBloc>().add(SearchChangedEvent(search: text));
+    });
+  }
+
+  Future<void> _onRefresh() async {
+    context.read<HomeBloc>().add(RefreshDataEvent());
   }
 }
 

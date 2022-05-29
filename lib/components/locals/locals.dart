@@ -12,15 +12,15 @@ const String enLocale = 'en_US';
 
 /// Мапа объектов со строками к их сокращенному именованию
 Map<String, LocaleBase> get initialLocals => <String, LocaleBase>{
-      ruLocale: LocaleRu(),
-      enLocale: LocaleEn(),
-    };
+  ruLocale: LocaleRu(),
+  enLocale: LocaleEn(),
+};
 
 /// Доступные локали
 Map<String, Locale> get availableLocales => <String, Locale>{
-      ruLocale: const Locale('ru', 'RU'),
-      enLocale: const Locale('en', 'US'),
-    };
+  ruLocale: const Locale('ru', 'RU'),
+  enLocale: const Locale('en', 'US'),
+};
 
 /// Расширения на контекст для доступа к локализации
 extension LocalContextExtension on BuildContext {
@@ -61,11 +61,11 @@ class MyLocalizationsDelegate extends LocalizationsDelegate<Locals> {
   /// Метод загрузки локализации
   @override
   Future<Locals> load(Locale locale) => SynchronousFuture<Locals>(
-        Locals(
-          isSupported(locale) ? locale : availableLocales[ruLocale]!,
-          localizedValues,
-        ),
-      );
+    Locals(
+      isSupported(locale) ? locale : availableLocales[ruLocale]!,
+      localizedValues,
+    ),
+  );
 
   @override
   bool shouldReload(MyLocalizationsDelegate old) => false;

@@ -15,16 +15,14 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
   final String? releaseDate;
   final String? description;
   final String? status;
-
   MovieTableData(
       {required this.id,
-      required this.title,
-      this.picture,
-      this.voteAverage,
-      this.releaseDate,
-      this.description,
-      this.status});
-
+        required this.title,
+        this.picture,
+        this.voteAverage,
+        this.releaseDate,
+        this.description,
+        this.status});
   factory MovieTableData.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return MovieTableData(
@@ -44,7 +42,6 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
           .mapFromDatabaseResponse(data['${effectivePrefix}status']),
     );
   }
-
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -85,7 +82,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
           ? const Value.absent()
           : Value(description),
       status:
-          status == null && nullToAbsent ? const Value.absent() : Value(status),
+      status == null && nullToAbsent ? const Value.absent() : Value(status),
     );
   }
 
@@ -102,7 +99,6 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
       status: serializer.fromJson<String?>(json['status']),
     );
   }
-
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
@@ -118,13 +114,13 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
   }
 
   MovieTableData copyWith(
-          {int? id,
-          String? title,
-          String? picture,
-          double? voteAverage,
-          String? releaseDate,
-          String? description,
-          String? status}) =>
+      {int? id,
+        String? title,
+        String? picture,
+        double? voteAverage,
+        String? releaseDate,
+        String? description,
+        String? status}) =>
       MovieTableData(
         id: id ?? this.id,
         title: title ?? this.title,
@@ -134,36 +130,34 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
         description: description ?? this.description,
         status: status ?? this.status,
       );
-
   @override
   String toString() {
     return (StringBuffer('MovieTableData(')
-          ..write('id: $id, ')
-          ..write('title: $title, ')
-          ..write('picture: $picture, ')
-          ..write('voteAverage: $voteAverage, ')
-          ..write('releaseDate: $releaseDate, ')
-          ..write('description: $description, ')
-          ..write('status: $status')
-          ..write(')'))
+      ..write('id: $id, ')
+      ..write('title: $title, ')
+      ..write('picture: $picture, ')
+      ..write('voteAverage: $voteAverage, ')
+      ..write('releaseDate: $releaseDate, ')
+      ..write('description: $description, ')
+      ..write('status: $status')
+      ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode => Object.hash(
       id, title, picture, voteAverage, releaseDate, description, status);
-
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is MovieTableData &&
-          other.id == this.id &&
-          other.title == this.title &&
-          other.picture == this.picture &&
-          other.voteAverage == this.voteAverage &&
-          other.releaseDate == this.releaseDate &&
-          other.description == this.description &&
-          other.status == this.status);
+          (other is MovieTableData &&
+              other.id == this.id &&
+              other.title == this.title &&
+              other.picture == this.picture &&
+              other.voteAverage == this.voteAverage &&
+              other.releaseDate == this.releaseDate &&
+              other.description == this.description &&
+              other.status == this.status);
 }
 
 class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
@@ -174,7 +168,6 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
   final Value<String?> releaseDate;
   final Value<String?> description;
   final Value<String?> status;
-
   const MovieTableCompanion({
     this.id = const Value.absent(),
     this.title = const Value.absent(),
@@ -184,7 +177,6 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
     this.description = const Value.absent(),
     this.status = const Value.absent(),
   });
-
   MovieTableCompanion.insert({
     this.id = const Value.absent(),
     required String title,
@@ -194,7 +186,6 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
     this.description = const Value.absent(),
     this.status = const Value.absent(),
   }) : title = Value(title);
-
   static Insertable<MovieTableData> custom({
     Expression<int>? id,
     Expression<String>? title,
@@ -217,12 +208,12 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
 
   MovieTableCompanion copyWith(
       {Value<int>? id,
-      Value<String>? title,
-      Value<String?>? picture,
-      Value<double?>? voteAverage,
-      Value<String?>? releaseDate,
-      Value<String?>? description,
-      Value<String?>? status}) {
+        Value<String>? title,
+        Value<String?>? picture,
+        Value<double?>? voteAverage,
+        Value<String?>? releaseDate,
+        Value<String?>? description,
+        Value<String?>? status}) {
     return MovieTableCompanion(
       id: id ?? this.id,
       title: title ?? this.title,
@@ -264,14 +255,14 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
   @override
   String toString() {
     return (StringBuffer('MovieTableCompanion(')
-          ..write('id: $id, ')
-          ..write('title: $title, ')
-          ..write('picture: $picture, ')
-          ..write('voteAverage: $voteAverage, ')
-          ..write('releaseDate: $releaseDate, ')
-          ..write('description: $description, ')
-          ..write('status: $status')
-          ..write(')'))
+      ..write('id: $id, ')
+      ..write('title: $title, ')
+      ..write('picture: $picture, ')
+      ..write('voteAverage: $voteAverage, ')
+      ..write('releaseDate: $releaseDate, ')
+      ..write('description: $description, ')
+      ..write('status: $status')
+      ..write(')'))
         .toString();
   }
 }
@@ -281,9 +272,7 @@ class $MovieTableTable extends MovieTable
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-
   $MovieTableTable(this.attachedDatabase, [this._alias]);
-
   final VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
@@ -300,19 +289,19 @@ class $MovieTableTable extends MovieTable
       'picture', aliasedName, true,
       type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _voteAverageMeta =
-      const VerificationMeta('voteAverage');
+  const VerificationMeta('voteAverage');
   @override
   late final GeneratedColumn<double?> voteAverage = GeneratedColumn<double?>(
       'vote_average', aliasedName, true,
       type: const RealType(), requiredDuringInsert: false);
   final VerificationMeta _releaseDateMeta =
-      const VerificationMeta('releaseDate');
+  const VerificationMeta('releaseDate');
   @override
   late final GeneratedColumn<String?> releaseDate = GeneratedColumn<String?>(
       'release_date', aliasedName, true,
       type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _descriptionMeta =
-      const VerificationMeta('description');
+  const VerificationMeta('description');
   @override
   late final GeneratedColumn<String?> description = GeneratedColumn<String?>(
       'description', aliasedName, true,
@@ -322,17 +311,13 @@ class $MovieTableTable extends MovieTable
   late final GeneratedColumn<String?> status = GeneratedColumn<String?>(
       'status', aliasedName, true,
       type: const StringType(), requiredDuringInsert: false);
-
   @override
   List<GeneratedColumn> get $columns =>
       [id, title, picture, voteAverage, releaseDate, description, status];
-
   @override
   String get aliasedName => _alias ?? 'movie_table';
-
   @override
   String get actualTableName => 'movie_table';
-
   @override
   VerificationContext validateIntegrity(Insertable<MovieTableData> instance,
       {bool isInserting = false}) {
@@ -378,7 +363,6 @@ class $MovieTableTable extends MovieTable
 
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
-
   @override
   MovieTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     return MovieTableData.fromData(data,
@@ -394,10 +378,8 @@ class $MovieTableTable extends MovieTable
 abstract class _$Database extends GeneratedDatabase {
   _$Database(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   late final $MovieTableTable movieTable = $MovieTableTable(this);
-
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
-
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities => [movieTable];
 }

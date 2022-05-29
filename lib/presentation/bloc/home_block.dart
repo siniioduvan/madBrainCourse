@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:film/components/constants.dart';
 import 'package:film/data/repositories/movies_repository.dart';
 import 'package:film/domain/models/movie_card_model.dart';
@@ -16,6 +18,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     // Добавим обработчики события
     on<ChangedFavourites>(_onClickFavourites);
     on<ChangedMoviesDB>(_onChangedDB);
+    on<RefreshDataEvent>(_onRefreshData);
 
     // Подписываемя на Stream об изменении данных в БД
     repository
@@ -63,5 +66,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   void _onChangedDB(ChangedMoviesDB event, Emitter<HomeState> emit) {
     emit(state.copyWith(favouritesMovies: event.models));
+  }
+
+  void _onRefreshData(RefreshDataEvent event, Emitter<HomeState> emit) {
+    add(LoadDataEvent());
   }
 }

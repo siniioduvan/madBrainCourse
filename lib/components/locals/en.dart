@@ -30,4 +30,34 @@ class LocaleEn implements LocaleBase {
 
   @override
   String get favourite => 'Favourite';
+
+  @override
+  String get more => 'More';
+
+  @override
+  String get detailsTitle => 'Details';
+
+  @override
+  String get favouritesTitle => 'Favourites';
+
+  @override
+  String get feedTitle => 'Breaking Bad';
+
+  @override
+  String get settingsBack => 'Back';
+
+  @override
+  String get settingsClearName => 'Clear Name';
+
+  @override
+  String get settingsExit => 'Exit';
+
+  @override
+  String get settingsGetName => 'Get Name';
+
+  @override
+  String get settingsSaveName => 'Save Name';
+
+  @override
+  String get settingsTitle => 'Settings';
 }

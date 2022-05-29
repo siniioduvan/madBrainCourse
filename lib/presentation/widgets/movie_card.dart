@@ -1,8 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:film/components/button/primary_button.dart';
 import 'package:film/components/constants.dart';
+import 'package:film/components/locals/locals.dart';
 import 'package:film/domain/models/movie_card_model.dart';
+import 'package:film/locale_bloc/locale_bloc.dart';
+import 'package:film/locale_bloc/locale_state.dart';
+import 'package:film/presentation/pages/details_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// Элемент верстки нашей карточки с фильмом
 class MovieCard extends StatelessWidget {
@@ -11,7 +16,7 @@ class MovieCard extends StatelessWidget {
   final String textButton;
 
   const MovieCard({
-    this.movieCardModel,
+    required this.movieCardModel,
     this.onClickFavoriteButton,
     required this.textButton,
     Key? key,
@@ -74,7 +79,22 @@ class MovieCard extends StatelessWidget {
                 onClickFavoriteButton?.call();
               },
             ),
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+            child: BlocBuilder<LocaleBloc, LocaleState>(
+              builder: (context, state) => PrimaryButton(
+                context.locale.more,
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    DetailsPage.path,
+                    arguments: movieCardModel,
+                  );
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );

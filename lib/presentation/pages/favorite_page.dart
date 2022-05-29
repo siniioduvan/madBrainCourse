@@ -20,6 +20,7 @@ class FavouritesScreen extends StatelessWidget {
             icon: const Icon(Icons.menu),
             onPressed: () {},
           ),
+          title: Text(context.locale.favouritesTitle),
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.settings),
@@ -38,7 +39,7 @@ class FavouritesScreen extends StatelessWidget {
             // Поле поиска
             BlocBuilder<HomeBloc, HomeState>(
               buildWhen: (oldState, newState) =>
-                  oldState.favouritesMovies != newState.favouritesMovies,
+              oldState.favouritesMovies != newState.favouritesMovies,
               builder: (context, state) {
                 return Expanded(
                   child: ListView.builder(
@@ -51,10 +52,10 @@ class FavouritesScreen extends StatelessWidget {
                         onClickFavoriteButton: () {
                           //отправляем событие в блок
                           context.read<HomeBloc>().add(
-                                ChangedFavourites(
-                                  model: currentCardModel,
-                                ),
-                              );
+                            ChangedFavourites(
+                              model: currentCardModel,
+                            ),
+                          );
                         },
                         movieCardModel: currentCardModel,
                         key: ValueKey<int>(currentCardModel.hashCode),

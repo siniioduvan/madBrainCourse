@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 abstract class LocaleEvent extends Equatable {
   const LocaleEvent();
@@ -9,10 +8,10 @@ abstract class LocaleEvent extends Equatable {
 }
 
 class ChangeLocaleEvent extends LocaleEvent {
-  final Locale locale;
+  final bool isEnLocale;
 
-  const ChangeLocaleEvent(this.locale);
+  const ChangeLocaleEvent(this.isEnLocale);
 
   @override
-  List<Object> get props => [locale];
+  List<Object> get props => [isEnLocale];
 }

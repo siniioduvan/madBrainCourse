@@ -12,12 +12,12 @@ class MovieCardModel {
 
   const MovieCardModel(
       {required this.id,
-      required this.title,
-      this.picture,
-      this.releaseDate,
-      this.voteAverage,
-      this.description,
-      this.status});
+        required this.title,
+        this.picture,
+        this.releaseDate,
+        this.voteAverage,
+        this.description,
+        this.status});
 }
 
 /// Функция преобразования из [MovieCardModel] в [MovieTableData]
