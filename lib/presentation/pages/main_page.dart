@@ -41,7 +41,7 @@ class _MainPageState extends State<MainPage> {
         type: BottomNavigationBarType.fixed,
         items: List.generate(
           _tabs.length,
-              (index) {
+          (index) {
             final _Tab tab = _tabs[index];
             return BottomNavigationBarItem(
               icon: tab.icon,

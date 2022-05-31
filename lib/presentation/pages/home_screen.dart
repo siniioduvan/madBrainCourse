@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               BlocBuilder<HomeBloc, HomeState>(
                 buildWhen: (oldState, newState) =>
-                oldState.data != newState.data ||
+                    oldState.data != newState.data ||
                     // добавим что список будет перерисовывать при изменении
                     // списка избранных
                     oldState.favouritesMovies != newState.favouritesMovies,
@@ -117,59 +117,59 @@ class _HomeScreenState extends State<HomeScreen> {
                         (BuildContext context, AsyncSnapshot<HomeModel?> data) {
                       return data.connectionState != ConnectionState.done
                           ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
+                              child: CircularProgressIndicator(),
+                            )
                           : data.hasData
-                          ? data.data?.results?.isNotEmpty == true
-                          ? Expanded(
-                        child: ListView.builder(
-                          itemBuilder:
-                              (BuildContext context, int index) {
-                            // проверяем есть ли элемент в избранном
-                            bool isFavourite = false;
-                            if (state.favouritesMovies
-                                ?.isNotEmpty ==
-                                true) {
-                              var moviesFavourite = state
-                                  .favouritesMovies
-                                  ?.firstWhereOrNull((element) =>
-                              element.id ==
-                                  data.data?.results?[index]
-                                      .id);
-                              if (moviesFavourite != null) {
-                                isFavourite = true;
-                              }
-                            }
+                              ? data.data?.results?.isNotEmpty == true
+                                  ? Expanded(
+                                      child: ListView.builder(
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          // проверяем есть ли элемент в избранном
+                                          bool isFavourite = false;
+                                          if (state.favouritesMovies
+                                                  ?.isNotEmpty ==
+                                              true) {
+                                            var moviesFavourite = state
+                                                .favouritesMovies
+                                                ?.firstWhereOrNull((element) =>
+                                                    element.id ==
+                                                    data.data?.results?[index]
+                                                        .id);
+                                            if (moviesFavourite != null) {
+                                              isFavourite = true;
+                                            }
+                                          }
 
-                            return MovieCard(
-                              // в зависимости от состояния меняем цвет
-                              textButton: isFavourite
-                                  ? context
-                                  .locale.deleteFavourites
-                                  : context.locale.addFavourites,
-                              // callback по клику на кнопку
-                              onClickFavoriteButton: () {
-                                //отправляем событие в блок
-                                context.read<HomeBloc>().add(
-                                  ChangedFavourites(
-                                    model: data.data
-                                        ?.results?[index],
-                                  ),
-                                );
-                              },
-                              movieCardModel:
-                              data.data?.results?[index],
-                              key: ValueKey<int>(
-                                  data.data?.results?[index].id ??
-                                      -1),
-                            );
-                          },
-                          itemCount:
-                          data.data?.results?.length ?? 0,
-                        ),
-                      )
-                          : const _Empty()
-                          : const _Error();
+                                          return MovieCard(
+                                            // в зависимости от состояния меняем цвет
+                                            textButton: isFavourite
+                                                ? context
+                                                    .locale.deleteFavourites
+                                                : context.locale.addFavourites,
+                                            // callback по клику на кнопку
+                                            onClickFavoriteButton: () {
+                                              //отправляем событие в блок
+                                              context.read<HomeBloc>().add(
+                                                    ChangedFavourites(
+                                                      model: data.data
+                                                          ?.results?[index],
+                                                    ),
+                                                  );
+                                            },
+                                            movieCardModel:
+                                                data.data?.results?[index],
+                                            key: ValueKey<int>(
+                                                data.data?.results?[index].id ??
+                                                    -1),
+                                          );
+                                        },
+                                        itemCount:
+                                            data.data?.results?.length ?? 0,
+                                      ),
+                                    )
+                                  : const _Empty()
+                              : const _Error();
                     },
                   );
                 },

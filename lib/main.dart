@@ -14,7 +14,6 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'presentation/pages/details_page.dart';
 
 void main() async {
@@ -84,7 +83,7 @@ class MyApp extends StatelessWidget {
 
               if (settings.name == DetailsPage.path) {
                 final MovieCardModel model =
-                settings.arguments as MovieCardModel;
+                    settings.arguments as MovieCardModel;
                 return MaterialPageRoute(
                   builder: (context) {
                     return DetailsPage(model: model);

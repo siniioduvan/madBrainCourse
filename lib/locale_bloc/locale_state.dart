@@ -8,9 +8,9 @@ class LocaleState extends Equatable {
   final Locale locale;
 
   LocaleState copyWith({Locale? locale, isEnLocale}) => LocaleState(
-    locale ?? this.locale,
-    isEnLocale ?? this.isEnLocale,
-  );
+        locale ?? this.locale,
+        isEnLocale ?? this.isEnLocale,
+      );
 
   @override
   List<Object> get props => [locale];

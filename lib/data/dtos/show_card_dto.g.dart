@@ -13,14 +13,14 @@ ShowCardDTO _$ShowCardDTOFromJson(Map<String, dynamic> json) => ShowCardDTO(
       birthday: json['birthday'] as String?,
       name: json['name'] as String?,
       status: json['status'] as String?,
-);
+    );
 
 Map<String, dynamic> _$ShowCardDTOToJson(ShowCardDTO instance) =>
     <String, dynamic>{
-          'char_id': instance.id,
-          'name': instance.name,
-          'birthday': instance.birthday,
-          'img': instance.picture,
-          'nickname': instance.nickname,
-          'status': instance.status,
+      'char_id': instance.id,
+      'name': instance.name,
+      'birthday': instance.birthday,
+      'img': instance.picture,
+      'nickname': instance.nickname,
+      'status': instance.status,
     };
